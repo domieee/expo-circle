@@ -3,11 +3,25 @@ import React, { useEffect, useState } from "react";
 import Comment from './components/Comment.js';
 
 const CommentScreen = (params) => {
+    
+    const [userId, setUserId] = useState("")
+
     const [commentsData, setCommentsData] = useState([])
 
-    const [rerenderState, useRerenderState] = useState(false)
+    const [newCommentText, setNewCommentText] = useState("")
+
+    const [renderState, setRenderState] = useState(false)
+
+    const postId = params.route.params.id
+
 
     useEffect(() => {
+        const getUserId = async () => {
+            const userId = await AsyncStorage.getItem('userID');
+            setUserId(userId);
+        };
+        getUserId()
+        
         const fetchComments = async () => {
             try {
                 const response = await fetch('https://circle-backend-2-s-guettner.vercel.app/api/v1/get-post-comments', {
@@ -30,6 +44,23 @@ const CommentScreen = (params) => {
         fetchComments();
     }, []);
 
+          const createNewComment = async () => {
+        const response = await fetch("https://circle-backend-2-s-guettner.vercel.app/api/v1/new-comment" , {
+            method:"POST",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                userId:userId,
+                comment:newCommentText,
+                postId:params.route.params.id
+            }),
+            
+        })
+        const data = await response.json()
+        console.log(data)
+        setCommentsData(data)
+        } 
 
 
     return (
@@ -53,11 +84,12 @@ const CommentScreen = (params) => {
             <View style={styles.postCommentContainer}>
                 <TextInput
                     style={styles.inputComment}
-                    /* onChangeText={onChangeText} */
-                    /* value={"hello"} */
+                    onChangeText={(e) => setNewCommentText(e)}
+                    value={newCommentText}
                     placeholder="Your Comment..."
                 />
-                <TouchableOpacity>
+                
+                <TouchableOpacity onPress={createNewComment}> 
                     <Text>Post</Text>
                 </TouchableOpacity>
             </View>
