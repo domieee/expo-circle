@@ -7,7 +7,7 @@ import { useRouter } from 'expo-router';
 
 const PostLink = ({ postImage, setRenderMode, postId, setPostId }) => {
 
-    const navigation = useNavigation()
+    
 
     const clickHandler = () => {
         setRenderMode("details")
@@ -16,11 +16,11 @@ const PostLink = ({ postImage, setRenderMode, postId, setPostId }) => {
 
     return (
 
-        <View style={styles.postContainer} >
+
             <Image
                 style={styles.postImage}
                 source={{ uri: postImage }} />
-        </View>
+
 
 
 

@@ -2,12 +2,12 @@ import { TouchableOpacity, Linking, View, Text, StyleSheet, Image, ScrollView } 
 import React, { useEffect, useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import PostLink from './components/PostLink.js';
-import { StatusBar } from 'react-native';
+
 
 const ProfileScreen = () => {
 
-    const [renderMode, setRenderMode] = useState("profile")
-    console.log(renderMode)
+
+
     const [postId, setPostId] = useState()
     console.log(postId)
 
@@ -33,8 +33,7 @@ const ProfileScreen = () => {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        /******************************************* ändern zu userId variable !!!! ***********************************************************************************************/
-                        userId: userId
+                        userId: "6463b8a6166b995d5d4571b7"
                     }),
                 })
                 const userData = await response.json();
@@ -50,15 +49,11 @@ const ProfileScreen = () => {
         getUserData();
     }, [])
 
-    /* console.log(profileId) */
 
-    console.log(profileData.followerList)
-    /*   console.log("profileData?.posts:", profileData?.posts); */
-    /* console.log("profileData?.posts.length:", profileData?.followingList?.length); */
     return (
         <View style={styles.pageContainer}>
             <View style={styles.navBar}>
-                <Image source={require('../assets/img/logoSmall.png')} />
+                {/* <Image source={require('../assets/img/logoSmall.png')} /> */}
                 <Text style={styles.navBarText}>{profileData?.userName}</Text>
             </View>
             <View style={styles.profileContainer}>
@@ -92,7 +87,7 @@ const ProfileScreen = () => {
             </View>
 
 
-            <ScrollView contentOffset={{ y: 0 }} showsVerticalScrollIndicator={false} overScrollMode="always" style={styles.postsContainer} >
+            <ScrollView contentOffset={{ y: 0 }} showsVerticalScrollIndicator={false} overScrollMode="always" contentContainerStyle={{ flexDirection:'row' , flexWrap:'wrap', gap:5, paddingTop:15}} >
                 {posts.map((post) => {
                     return (
                         <View style={styles.postLinkContainer}>
@@ -100,7 +95,6 @@ const ProfileScreen = () => {
                                 key={post._id}
                                 postImage={post.postImage}
                                 postId={post._id}
-                                setRenderMode={setRenderMode}
                                 setPostId={setPostId}
                             />
                         </View>
@@ -118,7 +112,8 @@ export default ProfileScreen
 const styles = StyleSheet.create({
     postsContainer: {
 
-        height: "100%"
+        
+        
 
 
         /*         gap:5,
@@ -127,9 +122,9 @@ const styles = StyleSheet.create({
 
     },
     postLinkContainer: {
-        /*   height:110,
+          height:110,
           width:110,
-          borderRadius:10, */
+          borderRadius:10,
 
     },
     navBar: {
