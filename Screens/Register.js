@@ -1,9 +1,9 @@
-import { View, TextInput, StyleSheet, Text, Button, TouchableOpacity } from 'react-native'
+import { View, TextInput, StyleSheet, Text, Button, TouchableOpacity, Image } from 'react-native'
 import { useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Register = ({ navigation }) => {
-
+    const [isImageLoaded, setImageLoaded] = useState(false);
     const [errorMsg, setErrorMsg] = useState('')
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -48,6 +48,8 @@ const Register = ({ navigation }) => {
 
     return (
         <View style={styles.loginForm}>
+            <Image
+                source={require('../assets/img/circle_logo.png')} />
             <Text>Register</Text>
             <TextInput
                 onChangeText={e => {
