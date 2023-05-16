@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeStack from './Stacks/HomeStack';
 import SearchScreen from './Screens/SearchScreen';
 import UploadScreen from './Screens/UploadScreen';
+import ProfileScreen from './Screens/ProfileScreen';
 import { Ionicons } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
@@ -21,6 +22,8 @@ const TabNavigator = () => {
                         iconName = focused ? 'ios-search' : 'ios-search-outline';
                     } else if (route.name === 'Upload') {
                         iconName = focused ? 'ios-add-circle' : 'ios-add-circle-outline';
+                    } else if (route.name === 'Profile') {
+                        iconName = focused ? 'ios-person' : 'ios-person-outline';
                     }
                     return <Ionicons name={iconName} size={size} color={color} />;
                 },
@@ -34,6 +37,8 @@ const TabNavigator = () => {
             <Tab.Screen name="Search" component={SearchScreen}
                 options={{ headerShown: false }} />
             <Tab.Screen name="Upload" component={UploadScreen}
+                options={{ headerShown: false }} />
+            <Tab.Screen name="Profile" component={ProfileScreen}
                 options={{ headerShown: false }} />
         </Tab.Navigator >
     );
