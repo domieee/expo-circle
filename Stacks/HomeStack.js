@@ -18,8 +18,8 @@ const HomeStack = () => {
     return (
         <Stack.Navigator>
             <Stack.Screen
-                name="Home"
-                component={() => <FeedScreen />}
+                name="Feed"
+                component={FeedScreen}
                 options={({ navigation }) => ({
                     headerTitle: () => (
                         <View style={{ flexDirection: 'row', alignItems: 'center', marginRight: 30 }}>
@@ -34,6 +34,7 @@ const HomeStack = () => {
                 })}
             />
             <Stack.Screen
+
                 options={({ navigation }) => ({
                     ...TransitionPresets.ModalPresentationIOS,
                     cardStyle: {
@@ -52,8 +53,8 @@ const HomeStack = () => {
                     ),
                     tabBarVisible: false
                 })}
-                name="Comments"
                 component={CommentScreen}
+                name="Comments"
             />
         </Stack.Navigator>
     );
