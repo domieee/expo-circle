@@ -42,6 +42,8 @@ const Search = () => {
         fetchUserList();
     }, []);
 
+
+
     const renderUsers = ({ item, index }) => {
         const user = item
         return (
@@ -51,27 +53,30 @@ const Search = () => {
                     <Text>{user.jobTitle}</Text>
                 </View >
                 <Button title={user.followerStatus === 'not_following' ? 'Follwing' : 'Follow'} />
+                
             </View >
         );
     };
 
+    console.log(users)
+
     const handleLoadMore = () => {
-        if (!isLoading) {
-            setPage(prevPage => prevPage + 1);
-            fetchUserList();
-        }
-    };
+  if (!isLoading && !endOfData) {
+    setPage(prevPage => prevPage + 1);
+    fetchUserList();
+  }
+};
 
     const renderFooter = () => {
-        if (endOfData) {
-            return <Text>End of data reached</Text>;
-        }
-        return isLoading ? (
-            <View style={styles.footer}>
-                <ActivityIndicator size="small" color="#999999" />
-            </View>
-        ) : null;
-    };
+  if (endOfData) {
+    return <Text>End of data reached</Text>;
+  }
+  return isLoading ? (
+    <View style={styles.footer}>
+      <ActivityIndicator size="small" color="#999999" />
+    </View>
+  ) : null;
+};
 
     useEffect(() => {
         if (users.length >= 20) {
