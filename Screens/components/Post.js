@@ -2,8 +2,7 @@ import { View, Text, Image, StyleSheet, TouchableOpacity, Pressable } from 'reac
 import React, { useState } from 'react';
 
 const Post = ({ profileImage, postImage, timestamp, userName, jobTitle, hashtags, likes, comments, navigation, postCaption, id }) => {
-    console.log(postCaption);
-    console.log(hashtags);
+
     console.log(timestamp);
 
     // like toggle
