@@ -14,9 +14,6 @@ const SkeletonPost = () => {
                     </View>
                 </View>
                 <View style={styles.contentSkeleton} />
-                <View style={styles.textLineContainer}>
-                    <View style={styles.textLine} />
-                </View>
             </View>
         </>
     );

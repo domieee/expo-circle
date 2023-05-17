@@ -5,8 +5,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const Register = ({ navigation }) => {
     const [isImageLoaded, setImageLoaded] = useState(false);
     const [errorMsg, setErrorMsg] = useState('')
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
     const [mail, setMail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmationPassword, setConfirmationPassword] = useState('');
@@ -19,20 +17,14 @@ const Register = ({ navigation }) => {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    firstName: firstName,
-                    lastName: lastName,
-                    mail: mail,
+                    email: mail,
                     password: password,
                     confirmPassword: confirmationPassword
                 })
             })
-
-            const responseData = await response.json(); // Save response data to a variable
-            console.log(responseData); // Log the response data
-
             if (response.ok) {
-                // await AsyncStorage.setItem('userID', responseData);
-                console.log('moin')
+                const res = await response.json(); // Save response data to a variable
+                await AsyncStorage.setItem('userID', res._id);
                 navigation.navigate('RegisterDetails')
             } else if (response.status === 400) {
                 setErrorMsg(responseData.msg);
@@ -40,7 +32,7 @@ const Register = ({ navigation }) => {
         } catch (err) {
             console.log(err, '55');
         }
-    };
+    }
 
 
     const goBack = () => {
@@ -52,27 +44,6 @@ const Register = ({ navigation }) => {
             <Image
                 source={require('../assets/img/circle_logo.png')} />
             <Text>Register</Text>
-            <TextInput
-                onChangeText={e => {
-                    setFirstName(e)
-                }}
-                style={styles.input}
-
-                editable
-                placeholder='John'
-                placeholderTextColor="#808080"
-            />
-
-            <TextInput
-                onChangeText={e => {
-                    setLastName(e)
-                }}
-                style={styles.input}
-
-                editable
-                placeholder='Doe'
-                placeholderTextColor="#808080"
-            />
 
             <TextInput
                 onChangeText={e => {

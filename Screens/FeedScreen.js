@@ -35,8 +35,9 @@ const FeedScreen = ({ navigation }) => {
                 return timestampB - timestampA;
             })
 
-            setFeed(prevFeed => [...prevFeed, ...sortedPosts]);
-            setIsLoading(false);
+            setFeed(prevFeed => [...prevFeed, ...sortedPosts])
+            setIsLoading(false)
+
         } catch (error) {
             console.log(error);
         }

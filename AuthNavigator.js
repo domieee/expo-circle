@@ -31,7 +31,7 @@ const AuthNavigator = ({ isAuthenticated, setIsAuthenticated }) => {
             <Stack.Screen
                 name="RegisterDetails"
                 component={(props) => <RegisterDetails {...props} navigation={props.navigation} isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />}
-                options={{ headerShown: false }}
+                options={{ headerTitle: false }}
             />
         </Stack.Navigator>
     );

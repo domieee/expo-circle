@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { useState, useEffect } from 'react';
 import AuthNavigator from './AuthNavigator.js';
 import TabNavigator from './TabNavigator.js';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const App = () => {
