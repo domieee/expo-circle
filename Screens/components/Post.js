@@ -46,9 +46,9 @@ const Post = ({ profileImage, postImage, timestamp, userName, jobTitle, hashtags
                 </View>
                 <Text style={styles.caption}>{postCaption}</Text>
                 <View style={styles.hashtags}>
-                    {hashtags.map((hashtag) => (
+{/*                     {hashtags.map((hashtag) => (
                         <Text style={styles.hashtag}>{hashtag}</Text>
-                    ))}
+                    ))} */}
                 </View>
             </View>
         </>
