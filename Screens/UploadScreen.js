@@ -52,9 +52,9 @@ const UploadScreen = () => {
             const formData = new FormData();
   
              formData.append('file', imageData); 
-             formData.append('upload_preset', 'socialimg' ) 
+             formData.append('upload_preset', 'gtythqdr') 
 
-            let apiUrl = 'https://api.cloudinary.com/v1_1/dkg83oxgc/upload'
+            let apiUrl = 'https://api.cloudinary.com/v1_1/djcnvsofd/image/upload'
 
             console.log(formData)
 
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
     button: {
       width: 200,
       height: 50,
-      backgroundColor: 'blue',
+      backgroundColor: '#FF6247',
       alignItems: 'center',
       justifyContent: 'center',
       marginVertical: 10,
@@ -178,10 +178,11 @@ const styles = StyleSheet.create({
         position: 'relative',
         width: 200,
         height: 200,
-        backgroundColor: 'blue',
+        backgroundColor: '#FF6247',
         alignItems: 'center',
         justifyContent: 'center',
         marginVertical: 10,
+        fontSize: '40px',
     },
     image: {
       width: 150,
