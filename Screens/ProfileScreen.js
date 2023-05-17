@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import PostLink from './components/PostLink.js';
 import { useRoute } from '@react-navigation/native'
 
-const ProfileScreen = () => {
+const ProfileScreen = ({ }) => {
 
 
 
@@ -12,7 +12,7 @@ const ProfileScreen = () => {
     console.log(postId)
 
     const route = useRoute()
-    
+
 
 
     const [profileData, setProfileData] = useState([])
@@ -33,10 +33,11 @@ const ProfileScreen = () => {
             try {
                 /* change userId to await AsyncStorage.getItem('userID') */
                 const userId = "64642974166b995d5d457383"
-                
-                const userIdParameter =  route.params
+
+                const { userIdParameter } = route.params
+                console.log(userIdParameter, 'params')
                 const profileId = userIdParameter === undefined ? userId : userIdParameter
-                
+
                 const response = await fetch('https://circle-backend-2-s-guettner.vercel.app/api/v1/get-profile', {
                     method: 'POST',
                     headers: {
@@ -57,7 +58,7 @@ const ProfileScreen = () => {
         };
 
         getUserData();
-    }, [])
+    }, [route.params])
 
 
     return (
@@ -71,9 +72,9 @@ const ProfileScreen = () => {
                 <Text style={styles.userName}>{profileData?.fullName}</Text>
                 <Text style={styles.jobTitle}>{profileData?.jobTitle}</Text>
                 <Text style={styles.userDescription}>{profileData?.profileCaption}</Text>
-                    <TouchableOpacity onPress={handlePress}>
-                        <Text style={styles.websiteLink}>{profileData?.website}</Text>
-                    </TouchableOpacity>
+                <TouchableOpacity onPress={handlePress}>
+                    <Text style={styles.websiteLink}>{profileData?.website}</Text>
+                </TouchableOpacity>
             </View>
 
             <View style={styles.userStatsContainer}>
@@ -97,8 +98,8 @@ const ProfileScreen = () => {
             </View>
 
 
-            <ScrollView contentOffset={{ y: 0 }} showsVerticalScrollIndicator={false} overScrollMode="always" contentContainerStyle={{ flexDirection:'row' , flexWrap:'wrap', gap:5, paddingTop:15}} >
-                {posts.map((post) => {
+            <ScrollView contentOffset={{ y: 0 }} showsVerticalScrollIndicator={false} overScrollMode="always" contentContainerStyle={{ flexDirection: 'row', flexWrap: 'wrap', gap: 5, paddingTop: 15 }} >
+                {posts && posts.map((post) => {
                     return (
                         <View key={post._id} style={styles.postLinkContainer}>
                             <PostLink
@@ -121,8 +122,8 @@ export default ProfileScreen
 const styles = StyleSheet.create({
     postsContainer: {
 
-        
-        
+
+
 
 
         /*         gap:5,
@@ -131,9 +132,9 @@ const styles = StyleSheet.create({
 
     },
     postLinkContainer: {
-          height:110,
-          width:110,
-          borderRadius:10,
+        height: 110,
+        width: 110,
+        borderRadius: 10,
 
     },
     navBar: {
@@ -149,7 +150,7 @@ const styles = StyleSheet.create({
     pageContainer: {
         paddingLeft: 25,
         paddingRight: 25,
-        paddingTop:60
+        paddingTop: 60
     },
     imageProfile: {
         width: 170,

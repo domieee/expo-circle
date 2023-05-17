@@ -6,25 +6,10 @@ const Post = ({ profileImage, postImage, timestamp, userName, jobTitle, hashtags
     console.log(hashtags)
     console.log(timestamp)
     return (
-
-
-
-        //                 { <View style={styles.container}>
-        // <View style={styles.row}>
-        //     <View style={styles.avatarSkeleton} />
-        //     <View style={styles.textLineContainer}>
-        //         <View style={styles.textLine} />
-        //         <View style={styles.textLine} />
-        //     </View>
-        // </View>
-        // <View style={styles.contentSkeleton} />
-        // </View> 
         <>
             <View style={styles.container}>
-                <Pressable
-                    onPress={() => navigation.navigate('Profile')}
-                    style={styles.row}>
-                    <Image style={styles.avatar} source={{ uri: profileImage }} />
+                <Pressable onPress={() => navigation.navigate('Profile', { userIdParameter: '64642974166b995d5d457384' })} >
+                    < Image style={styles.avatar} source={{ uri: profileImage }} />
                     <View style={styles.textLineContainer}>
                         <Text style={styles.textBold}>{userName}</Text>
                         <Text style={styles.text}>{jobTitle}</Text>
@@ -53,12 +38,10 @@ const Post = ({ profileImage, postImage, timestamp, userName, jobTitle, hashtags
                         <Text style={styles.statsText}>{comments}</Text>
                     </View>
                 </View>
-                <Text>{timestamp}</Text>
                 <Text style={styles.caption}>{postCaption}</Text>
                 <View style={styles.hashtags}>
                     {hashtags.map((hashtag) => <Text style={styles.hashtag}>{hashtag}</Text>)}
                 </View>
-
             </View >
         </>
     );
