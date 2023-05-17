@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 
 
 const Comment = ({ commentCreatorAvatar, commentCreator, commentCreatorJob, comment, likes, navigation, postId }) => {
-    // like toggle
+    // like toggle for comments
     const [likeToggle, setLikeToggle] = useState(false);
 
     const liked = require('../../assets/img/heart_filled.png');
