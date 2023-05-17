@@ -2,15 +2,17 @@ import { TouchableOpacity, Linking, View, Text, StyleSheet, Image, ScrollView } 
 import React, { useEffect, useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import PostLink from './components/PostLink.js';
-import { StatusBar } from 'react-native';
+import { useRoute } from '@react-navigation/native'
 
 const ProfileScreen = () => {
 
-    const [renderMode, setRenderMode] = useState("profile")
-    console.log(renderMode)
+
+
     const [postId, setPostId] = useState()
     console.log(postId)
 
+    const route = useRoute()
+    
 
 
     const [profileData, setProfileData] = useState([])
@@ -23,18 +25,25 @@ const ProfileScreen = () => {
         Linking.openURL(`${profileData?.website}`);
     };
 
+
+    console.log(profileData.profileCaption)
+
     useEffect(() => {
         const getUserData = async () => {
             try {
-                const userId = await AsyncStorage.getItem('userID');
+                /* change userId to await AsyncStorage.getItem('userID') */
+                const userId = "64642974166b995d5d457383"
+                
+                const userIdParameter =  route.params
+                const profileId = userIdParameter === undefined ? userId : userIdParameter
+                
                 const response = await fetch('https://circle-backend-2-s-guettner.vercel.app/api/v1/get-profile', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        /******************************************* ändern zu userId variable !!!! ***********************************************************************************************/
-                        userId: "6463b8a6166b995d5d4571b7"
+                        userId: profileId
                     }),
                 })
                 const userData = await response.json();
@@ -50,25 +59,21 @@ const ProfileScreen = () => {
         getUserData();
     }, [])
 
-    /* console.log(profileId) */
 
-    console.log(profileData.followerList)
-    /*   console.log("profileData?.posts:", profileData?.posts); */
-    /* console.log("profileData?.posts.length:", profileData?.followingList?.length); */
     return (
         <View style={styles.pageContainer}>
             <View style={styles.navBar}>
-                <Image source={require('../assets/img/logoSmall.png')} />
+                {/* <Image source={require('../assets/img/logoSmall.png')} /> */}
                 <Text style={styles.navBarText}>{profileData?.userName}</Text>
             </View>
             <View style={styles.profileContainer}>
                 <Image style={styles.imageProfile} source={{ uri: profileData?.avatarMidsize }} />
                 <Text style={styles.userName}>{profileData?.fullName}</Text>
                 <Text style={styles.jobTitle}>{profileData?.jobTitle}</Text>
-                <Text style={styles.userDescription}>{profileData?.userDescription}</Text>
-                {/*                     <TouchableOpacity onPress={handlePress}>
-                <Text style={styles.websiteLink}>{profileData?.website}</Text>
-                    </TouchableOpacity> */}
+                <Text style={styles.userDescription}>{profileData?.profileCaption}</Text>
+                    <TouchableOpacity onPress={handlePress}>
+                        <Text style={styles.websiteLink}>{profileData?.website}</Text>
+                    </TouchableOpacity>
             </View>
 
             <View style={styles.userStatsContainer}>
@@ -92,15 +97,13 @@ const ProfileScreen = () => {
             </View>
 
 
-            <ScrollView contentOffset={{ y: 0 }} showsVerticalScrollIndicator={false} overScrollMode="always" style={styles.postsContainer} >
+            <ScrollView contentOffset={{ y: 0 }} showsVerticalScrollIndicator={false} overScrollMode="always" contentContainerStyle={{ flexDirection:'row' , flexWrap:'wrap', gap:5, paddingTop:15}} >
                 {posts.map((post) => {
                     return (
-                        <View style={styles.postLinkContainer}>
+                        <View key={post._id} style={styles.postLinkContainer}>
                             <PostLink
-                                key={post._id}
                                 postImage={post.postImage}
                                 postId={post._id}
-                                setRenderMode={setRenderMode}
                                 setPostId={setPostId}
                             />
                         </View>
@@ -118,7 +121,8 @@ export default ProfileScreen
 const styles = StyleSheet.create({
     postsContainer: {
 
-        height: "100%"
+        
+        
 
 
         /*         gap:5,
@@ -127,9 +131,9 @@ const styles = StyleSheet.create({
 
     },
     postLinkContainer: {
-        /*   height:110,
+          height:110,
           width:110,
-          borderRadius:10, */
+          borderRadius:10,
 
     },
     navBar: {
@@ -144,7 +148,8 @@ const styles = StyleSheet.create({
     },
     pageContainer: {
         paddingLeft: 25,
-        paddingRight: 25
+        paddingRight: 25,
+        paddingTop:60
     },
     imageProfile: {
         width: 170,
@@ -180,7 +185,8 @@ const styles = StyleSheet.create({
         color: "#799df9",
         fontWeight: "bold",
         fontSize: 12,
-        marginBottom: 20
+        marginBottom: 20,
+        textAlign: "center"
     },
     userStatsContainer: {
 
