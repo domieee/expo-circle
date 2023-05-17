@@ -12,7 +12,7 @@ const App = () => {
 
     useEffect(() => {
         async function clearSessionData() {
-            await AsyncStorage.clear();
+            await AsyncStorage.removeItem('userID');
         }
         clearSessionData()
     }, [])

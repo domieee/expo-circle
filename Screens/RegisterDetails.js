@@ -29,7 +29,7 @@ const RegisterDetails = ({ isAuthenticated, setIsAuthenticated }) => {
                     fullName: `${firstName} ${lastName}`,
                     firstName: firstName,
                     lastName: lastName,
-                    profileImage: profileImage,
+                    avatarMidsize: profileImage,
                     profileDescription: profileDescription,
                     jobTitle: jobTitle,
                     phoneNumber: phoneNumber,

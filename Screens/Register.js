@@ -26,8 +26,9 @@ const Register = ({ navigation }) => {
                 const res = await response.json(); // Save response data to a variable
                 await AsyncStorage.setItem('userID', res._id);
                 navigation.navigate('RegisterDetails')
-            } else if (response.status === 400) {
+            } else {
                 setErrorMsg(responseData.msg);
+                console.log(responseData)
             }
         } catch (err) {
             console.log(err, '55');
