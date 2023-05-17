@@ -153,12 +153,12 @@ const Search = () => {
     
      */
     const followHandler = (fullNameToAdd) => {
-       /*  follow(fullNameToAdd) */
+        /*  follow(fullNameToAdd) */
         setRenderState(prev => !prev)
     }
 
     const unfollowHandler = (fullNameToRemove, _id) => {
-       /*  unfollow(fullNameToRemove, _id) */
+        /*  unfollow(fullNameToRemove, _id) */
         setRenderState(prev => !prev)
     }
 
@@ -187,17 +187,17 @@ const Search = () => {
                 {isLoading && <ActivityIndicator />} */}
 
 
-
-                {searchedUser && searchedUser.map((user) => {
-                   console.log(user.avatarSmall)
-                   return (
-                    <FollowButton 
-                    key={user._id} 
-                    fullName={user.fullName}
-                    image={user.avatarSmall}
-                    />)
-                })}
-
+                <ScrollView>
+                    {searchedUser && searchedUser.map((user) => {
+                        console.log(user.avatarSmall)
+                        return (
+                            <FollowButton
+                                key={user._id}
+                                fullName={user.fullName}
+                                image={user.avatarSmall}
+                            />)
+                    })}
+                </ScrollView>
             </SafeAreaView>
         </>
     )
@@ -224,10 +224,10 @@ const styles = StyleSheet.create({
         paddingLeft: 20,
         height: 50,
         backgroundColor: '#fff',
-        borderBottomWidth:1,
-        borderColor:"lightgray",
-        borderBottomLeftRadius:10,
-        borderBottomRightRadius:10
+        borderBottomWidth: 1,
+        borderColor: "lightgray",
+        borderBottomLeftRadius: 10,
+        borderBottomRightRadius: 10
     },
     searchedUserContainer: {
         flexDirection: "row",
