@@ -3,55 +3,50 @@ import React, { useState } from 'react'
 
 
 const Comment = ({ commentCreatorAvatar, commentCreator, commentCreatorJob, comment, likes, navigation, postId }) => {
+    // like toggle
+    const [likeToggle, setLikeToggle] = useState(false);
 
+    const liked = require('../../assets/img/heart_filled.png');
+    const notLiked = require('../../assets/img/heart_outlined.png');
 
-    const [likedStatus, setLikedStatus] = useState(false)
+    const newLikeHigher = likes + 1;
 
-    const likedLogo = likedStatus ? require('../../assets/img/heart_filled.png') : require('../../assets/img/heart_outlined.png')
+    const likeHandlerToggle = () => {
+        setLikeToggle((prev) => !prev);
+    }
 
     const likeHandler = () => {
         if (!likedStatus) {
-            fetch("https://circle-backend-2-s-guettner.vercel.app/api/v1/increase-comment-likes", {
-                method: "POST",
+            fetch('https://circle-backend-2-s-guettner.vercel.app/api/v1/increase-comment-likes', {
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
                     userId: postId,
-                })
-            }).then(() => { setLikedStatus(prev => !prev) })
+                }),
+            }).then(() => {
+                setLikedStatus((prev) => !prev);
+            });
         }
-    }
+    };
 
     return (
         <View style={styles.commentContainer}>
-            <Pressable
-                onPress={() => navigation.reset('ProfileMember', { userIdParameter: commentCreator })}
-                style={styles.commentCreatorContainer}>
-                <Image
-                    style={styles.commentCreatorAvatar}
-                    source={{ uri: commentCreatorAvatar }} />
+            <Pressable onPress={() => navigation.reset('ProfileMember', { userIdParameter: commentCreator })} style={styles.commentCreatorContainer}>
+                <Image style={styles.commentCreatorAvatar} source={{ uri: commentCreatorAvatar }} />
                 <View>
-                    <Text>
-                        {commentCreator}
-                    </Text>
-                    <Text>
-                        {commentCreatorJob}
-                    </Text>
+                    <Text>{commentCreator}</Text>
+                    <Text>{commentCreatorJob}</Text>
                 </View>
             </Pressable>
-            <Text>
-                {comment}
-            </Text>
+            <Text>{comment}</Text>
             <View style={styles.flex}>
-                <TouchableOpacity onPress={likeHandler}>
-                    <Image source={likedLogo} />
+                <TouchableOpacity onPress={likeHandlerToggle}>
+                    <Image source={likeToggle ? liked : notLiked} />
                 </TouchableOpacity>
-                <Text>
-                    {likes}
-                </Text>
+                <Text>{likeToggle === false ? likes : newLikeHigher}</Text>
             </View>
-
         </View>
     );
 }
