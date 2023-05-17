@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Button, Image,TouchableOpacity , Text, ImageBackground, TextInput} from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import { Icon } from '@rneui/themed';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -99,6 +100,11 @@ const UploadScreen = () => {
 
           </TouchableOpacity>
 
+          <TextInput
+          styles={styles.input}
+          placeholder='Title'
+          />
+
           <TouchableOpacity 
           style={styles.button }
           onPress={handelpost}
@@ -107,10 +113,6 @@ const UploadScreen = () => {
              > Post </Text>
           </TouchableOpacity>
 
-          {imageUrlC&& <Image
-        source={{uri: imageUrlC}}
-        style={styles.image}
-         />}
     </View>
     );
 };
@@ -145,11 +147,13 @@ const styles = StyleSheet.create({
 
     },
     image: {
-      width: 150,
-      height: 150,
+      width: 200,
+      height: 200,
       marginVertical: 10,
       borderWidth:1,
       borderColor: '#FF6247',
+      borderStyle: 'dotted',
+      borderRadius: 20,
     },
     text: {
         color: 'white',
@@ -159,6 +163,9 @@ const styles = StyleSheet.create({
         fontSize: '30px',
         fontWeight:'bold',
     },
+    input: {
+        borderWidth: 1,
+    }
     
   });
 
