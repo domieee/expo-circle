@@ -6,6 +6,7 @@ const Post = ({ profileImage, postImage, timestamp, userName, jobTitle, hashtags
     console.log(hashtags);
     console.log(timestamp);
 
+    // like toggle
     const [likeToggle, setLikeToggle] = useState(false);
 
     const liked = require('../../assets/img/heart_filled.png');

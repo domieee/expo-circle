@@ -2,6 +2,7 @@ import { ScrollView, View, TextField, TextInput, Text, Button, ActivityIndicator
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context';
+import FollowButton from './components/FollowButton';
 
 const Search = () => {
 
@@ -29,10 +30,10 @@ const Search = () => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    userId: '64642974166b995d5d457384',
-                    fullName: userName
+                    userId: userId,
+                    fullName: userName,
                 }),
-            })
+            });
             const data = await response.json()
             console.log(data)
             setSearchedUser(data)
@@ -152,23 +153,24 @@ const Search = () => {
     
      */
     const followHandler = (fullNameToAdd) => {
-        follow(fullNameToAdd)
+       /*  follow(fullNameToAdd) */
         setRenderState(prev => !prev)
     }
 
     const unfollowHandler = (fullNameToRemove, _id) => {
-        unfollow(fullNameToRemove, _id)
+       /*  unfollow(fullNameToRemove, _id) */
         setRenderState(prev => !prev)
     }
 
 
+    const [followedArray, setFollowedArray] = useState([])
 
 
     return (
         <>
             <SafeAreaView>
                 <TextInput
-                    placeholder='Search for users'
+                    placeholder='Search for users...'
                     placeholderTextColor="#808080"
                     style={styles.input}
                     onChangeText={setUserName}
@@ -187,17 +189,13 @@ const Search = () => {
 
 
                 {searchedUser && searchedUser.map((user) => {
-                    return (
-                        <View style={styles.searchedUserContainer}
-                            key={user._id}>
-                            <Text>{user.fullName}</Text>
-                            {user.isFollowing ?
-                                <Button onPress={() => unfollowHandler(user.fullName)} color="#d11d1d" title='unfollow' /> :
-                                <Button onPress={() => followHandler(user.fullName, user._id)} title='follow' />}
-                            <Text>{user._id}</Text>
-                        </View>
-
-                    )
+                   console.log(user.avatarSmall)
+                   return (
+                    <FollowButton 
+                    key={user._id} 
+                    fullName={user.fullName}
+                    image={user.avatarSmall}
+                    />)
                 })}
 
             </SafeAreaView>
@@ -205,6 +203,14 @@ const Search = () => {
     )
 }
 
+/*                         <View style={styles.searchedUserContainer} key={user._id}>
+                            <Text>{user.fullName}</Text>
+                            {renderState ? (
+                                <Button onPress={() => unfollowHandler(user.fullName)} color="#d11d1d" title="unfollow" />
+                            ) : (
+                                <Button onPress={() => followHandler(user.fullName, user._id)} title="follow" />
+                            )}
+                        </View> */
 const styles = StyleSheet.create({
     userContainer: {
         flex: 1,
@@ -217,7 +223,11 @@ const styles = StyleSheet.create({
         top: -10,
         paddingLeft: 20,
         height: 50,
-        backgroundColor: '#fff'
+        backgroundColor: '#fff',
+        borderBottomWidth:1,
+        borderColor:"lightgray",
+        borderBottomLeftRadius:10,
+        borderBottomRightRadius:10
     },
     searchedUserContainer: {
         flexDirection: "row",
