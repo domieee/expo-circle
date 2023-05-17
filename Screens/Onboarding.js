@@ -12,11 +12,9 @@ const Onboarding = ({ navigation }) => {
     // const router = useRouter()
 
 
-
-
     return (
         <View style={styles.center}>
-            <ImageBackground source={require('../assets/img/wave-haikei(3).png')} resizeMode="strech" style={styles.image}>
+            <ImageBackground source={require('../assets/img/wave-haikei(3).png')} style={styles.image}>
                 <View style={styles.boxTop}>
                     <Image
                         style={styles.boxTopImage}

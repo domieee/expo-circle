@@ -34,7 +34,7 @@ const ProfileScreen = () => {
                     },
                     body: JSON.stringify({
                         /******************************************* ändern zu userId variable !!!! ***********************************************************************************************/
-                        userId: userId
+                        userId: "6463b8a6166b995d5d4571b7"
                     }),
                 })
                 const userData = await response.json();

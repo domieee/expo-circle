@@ -32,7 +32,14 @@ const FeedScreen = ({ navigation }) => {
             });
             setUser(userID);
             const feedData = await response.json();
-            setFeed(prevFeed => [...prevFeed, ...feedData]);
+
+            const sortedPosts = await feedData.sort((a, b) => {
+                const timestampA = new Date(a.timestamp);
+                const timestampB = new Date(b.timestamp);
+                return timestampB - timestampA;
+            })
+
+            setFeed(prevFeed => [...prevFeed, ...sortedPosts]);
             setIsLoading(false);
         } catch (error) {
             console.log(error);
@@ -52,6 +59,9 @@ const FeedScreen = ({ navigation }) => {
                 postImage={item.postImage}
                 userName={item.postCreator}
                 jobTitle={item.postCreatorJob}
+                postCaption={item.postCaption}
+                hashtags={item.hashtags}
+                timestamp={item.timestamp}
                 likes={item.likes}
                 comments={item.comments.length.toString()}
             />
@@ -99,7 +109,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
     },
     postContainer: {
-        paddingTop: 20,
+        paddingTop: 10,
     },
     footer: {
         alignItems: 'center',
