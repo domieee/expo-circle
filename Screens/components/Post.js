@@ -24,7 +24,7 @@ const Post = ({ profileImage, postImage, timestamp, userName, jobTitle, hashtags
                     <Image style={styles.avatar} source={{ uri: profileImage }} />
                     <View style={styles.textLineContainer}>
                         <Text style={styles.textBold}>{userName}</Text>
-                        <Text style={styles.text}>{jobTitle}</Text>
+                        <Text style={styles.text}>{jobTitle}asdsd</Text>
                     </View>
                 </Pressable>
 
