@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 // Import your screens/components for the Home tab
 import FeedScreen from '../Screens/FeedScreen';
-import CommentScreen from '../Screens/CommentScreen';
+import CommentsScreen from '../Screens/CommentsScreen.js';
 import ProfileMemberScreen from '../Screens/ProfileMemberScreen';
 import { useState } from 'react';
 
@@ -13,11 +13,9 @@ const Stack = createStackNavigator();
 
 const HomeStack = () => {
 
-
-
-
     return (
-        <Stack.Navigator>
+        <Stack.Navigator
+            initialRouteName="Feed">
             <Stack.Screen
                 name="Feed"
                 component={FeedScreen}
@@ -35,7 +33,8 @@ const HomeStack = () => {
                 })}
             />
             <Stack.Screen
-
+                name="Comments"
+                component={CommentsScreen}
                 options={({ navigation }) => ({
                     ...TransitionPresets.ModalPresentationIOS,
                     cardStyle: {
@@ -54,8 +53,8 @@ const HomeStack = () => {
                     ),
                     tabBarVisible: false
                 })}
-                component={CommentScreen}
-                name="Comments"
+
+
             />
             <Stack.Screen component={ProfileMemberScreen} name='ProfileMember' />
         </Stack.Navigator>
