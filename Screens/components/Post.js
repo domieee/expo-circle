@@ -1,136 +1,158 @@
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, Pressable, } from 'react-native';
 import React from 'react';
 
-const Post = ({ profileImage, postImage, userName, jobTitle, likes, comments, navigation, postCaption, id }) => {
-    const isSkeleton = !profileImage || !postImage;
-
+const Post = ({ profileImage, postImage, timestamp, userName, jobTitle, hashtags, likes, comments, navigation, postCaption, id }) => {
+    console.log(postCaption)
+    console.log(hashtags)
+    console.log(timestamp)
     return (
-        <View style={isSkeleton ? styles.skeletonPost : styles.post}>
+
+
+
+        //                 { <View style={styles.container}>
+        // <View style={styles.row}>
+        //     <View style={styles.avatarSkeleton} />
+        //     <View style={styles.textLineContainer}>
+        //         <View style={styles.textLine} />
+        //         <View style={styles.textLine} />
+        //     </View>
+        // </View>
+        // <View style={styles.contentSkeleton} />
+        // </View> 
+        <>
             <View style={styles.container}>
-                {isSkeleton ? (
-                    <View style={styles.avatarSkeleton} />
-                ) : (
-                    <Image style={styles.imageProfile} source={{ uri: profileImage }} />
-                )}
-                <View>
-                    {isSkeleton ? (
-                        <View style={[styles.text, styles.skeletonText]} />
-                    ) : (
-                        <>
-                            <Text style={styles.text}>{userName}</Text>
-                            <Text style={styles.text}>{jobTitle}</Text>
-                        </>
-                    )}
-                </View>
-            </View>
-            <View style={styles.postImgContainer}>
-                {isSkeleton ? (
-                    <View style={styles.contentSkeleton} />
-                ) : (
-                    <Image style={styles.imagePost} source={{ uri: postImage }} />
-                )}
+                <Pressable
+                    onPress={() => navigation.navigate('Profile')}
+                    style={styles.row}>
+                    <Image style={styles.avatar} source={{ uri: profileImage }} />
+                    <View style={styles.textLineContainer}>
+                        <Text style={styles.textBold}>{userName}</Text>
+                        <Text style={styles.text}>{jobTitle}</Text>
+                    </View>
+                </Pressable >
+
+                <Image style={styles.imagePost} source={{ uri: postImage }} />
                 <View style={styles.postStats}>
-                    {isSkeleton ? (
-                        <View style={[styles.touchableOpacity, styles.skeletonStats]} />
-                    ) : (
-                        <>
-                            <Text>{postCaption}</Text>
-                            <View style={styles.touchableOpacity}>
-                                <TouchableOpacity>
-                                    <Image
-                                        style={styles.vector}
-                                        source={require('../../assets/img/heart_outlined.png')}
-                                    />
-                                </TouchableOpacity>
-                                <Text>{likes}</Text>
-                            </View>
-                            <View style={styles.touchableOpacity}>
-                                <TouchableOpacity onPress={() => navigation.navigate('Comments', { id: id })}>
-                                    <Image
-                                        style={styles.vector}
-                                        source={require('../../assets/img/comment_outlined.png')}
-                                    />
-                                </TouchableOpacity>
-                                <Text>{comments}</Text>
-                            </View>
-                        </>
-                    )}
+                    <View style={styles.touchableOpacity}>
+                        <TouchableOpacity style={styles.stats}>
+                            <Image
+                                style={styles.vector}
+                                source={require('../../assets/img/heart_outlined.png')}
+                            />
+                        </TouchableOpacity>
+                        <Text style={styles.statsText}>{likes}</Text>
+                    </View>
+                    <View style={styles.touchableOpacity}>
+                        <TouchableOpacity
+                            style={styles.stats}
+                            onPress={() => navigation.navigate('Comments', { id: id })}>
+                            <Image
+                                style={styles.vector}
+                                source={require('../../assets/img/comment_outlined.png')} />
+                        </TouchableOpacity>
+                        <Text style={styles.statsText}>{comments}</Text>
+                    </View>
                 </View>
-            </View>
-        </View>
+                <Text>{timestamp}</Text>
+                <Text style={styles.caption}>{postCaption}</Text>
+                <View style={styles.hashtags}>
+                    {hashtags.map((hashtag) => <Text style={styles.hashtag}>{hashtag}</Text>)}
+                </View>
+
+            </View >
+        </>
     );
 };
 
 const styles = StyleSheet.create({
-    post: {
-        marginBottom: 10,
+    container: {
+        borderWidth: 0.2,
+        borderColor: '#ffffff',
+        borderRadius: 20,
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        borderColor: 'black',
+        flexDirection: 'column',
+        marginBottom: 15,
+        width: 370,
+        padding: 10,
     },
-    skeletonPost: {
+    avatar: {
+        width: 50,
+        height: 50,
+        borderRadius: 25,
+    },
+    row: {
+        flexDirection: 'row',
         marginBottom: 10,
-        opacity: 0.5,
+        marginLeft: 15
+    },
+    textLineContainer: {
+        justifyContent: 'center',
+        gap: 2.5
+    },
+    textLine: {
+        width: 250,
+        height: 20,
+        backgroundColor: '#E0E0E0',
+        marginRight: 10,
+        borderRadius: 7.5
+    },
+    imagePost: {
+        flex: 1,
+        height: 300,
+        width: 350,
+        borderRadius: 20,
+        marginLeft: 'auto',
+        marginRight: 'auto'
+    },
+    postStats: {
+        flexDirection: 'row',
+        gap: 7.5,
+        marginLeft: 15,
+        marginTop: 10
+    },
+    vector: {
+        width: 26,
+        height: 26
     },
     touchableOpacity: {
         flexDirection: 'row',
         alignItems: 'center',
+        marginRight: 5
     },
-    vector: {
-        width: 24,
-        marginRight: 7.5,
-    },
-    imageProfile: {
-        width: 50,
-        height: 50,
-        borderRadius: 200,
-        marginRight: 20,
-    },
-    postStats: {
-        flex: 1,
+    hashtags: {
+        marginLeft: 15,
+        width: 300,
         flexDirection: 'row',
-        gap: 15,
-        marginTop: 5,
-        marginBottom: 6,
+        flexWrap: 'wrap',
+        columnGap: 2.5,
     },
-    postImgContainer: {
-        padding: 20,
+    hashtag: {
+        color: 'navy',
+        fontWeight: 'bold',
+        fontSize: 12
     },
-    imagePost: {
-        width: 350,
-        height: 300,
-        borderRadius: 20,
+    stats: {
+        justifyContent: 'center',
     },
-    container: {
-        flex: 1,
-        flexDirection: 'row',
-        paddingLeft: 30,
-        marginTop: 10,
-        marginBottom: 5,
-        alignItems: 'center',
+    statsText: {
+        marginLeft: 3
     },
     text: {
-        height: 20,
+        marginLeft: 15,
+
     },
-    skeletonText: {
-        backgroundColor: '#E0E0E0',
+    textBold: {
+        fontWeight: '600',
+        marginLeft: 15
     },
-    avatarSkeleton: {
-        width: 50,
-        height: 50,
-        borderRadius: 25,
-        backgroundColor: '#E0E0E0',
-        marginRight: 10,
-    },
-    contentSkeleton: {
-        flex: 1,
-        height: 100,
-        backgroundColor: '#E0E0E0',
-        borderRadius: 10,
-    },
-    skeletonStats: {
-        width: 80,
-        height: 24,
-        borderRadius: 12,
-        backgroundColor: '#E0E0E0',
-    },
+    caption: {
+        marginTop: 10,
+        marginBottom: 2.5,
+        marginLeft: 15,
+        fontSize: 14
+    }
 });
 
 export default Post;
