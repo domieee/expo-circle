@@ -8,7 +8,9 @@ const Post = ({ profileImage, postImage, timestamp, userName, jobTitle, hashtags
     return (
         <>
             <View style={styles.container}>
-                <Pressable onPress={() => navigation.navigate('Profile', { userIdParameter: '64642974166b995d5d457384' })} >
+                <Pressable
+                    style={styles.row}
+                    onPress={() => navigation.navigate('ProfileMember', { userIdParameter: userName })} >
                     < Image style={styles.avatar} source={{ uri: profileImage }} />
                     <View style={styles.textLineContainer}>
                         <Text style={styles.textBold}>{userName}</Text>

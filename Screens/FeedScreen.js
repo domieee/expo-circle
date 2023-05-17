@@ -9,13 +9,9 @@ const FeedScreen = ({ navigation }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [user, setUser] = useState()
     const [feed, setFeed] = useState([])
-
     const [posts, setPosts] = useState([]);
-
     const [page, setPage] = useState(1);
-
     const [scrollPosition, setScrollPosition] = useState(0);
-
     const [reload, setReload] = useState(false)
 
     const fetchFeed = async () => {

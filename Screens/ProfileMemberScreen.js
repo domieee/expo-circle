@@ -1,34 +1,30 @@
 import { TouchableOpacity, Linking, View, Text, StyleSheet, Image, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import PostLink from './components/PostLink.js';
 import { useRoute } from '@react-navigation/native'
 
-const ProfileScreen = () => {
+const ProfileMemberScreen = () => {
     const [postId, setPostId] = useState()
-
-    const route = useRoute()
 
     const [profileData, setProfileData] = useState([])
     const [profileId, setProfileId] = useState()
-
     const [posts, setPosts] = useState([])
+    const route = useRoute()
 
     const handlePress = () => {
         Linking.openURL(`${profileData?.website}`);
     };
 
     useEffect(() => {
-        const getUserData = async () => {
+        const fetchData = async () => {
             try {
-                const userId = await AsyncStorage.getItem('userID')
-                const response = await fetch('https://circle-backend-2-s-guettner.vercel.app/api/v1/get-profile', {
+                const response = await fetch('https://circle-backend-2-s-guettner.vercel.app/api/v1/get-member-profile', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        userId: userId
+                        fullName: route.params.userIdParameter
                     }),
                 })
                 const userData = await response.json();
@@ -38,13 +34,9 @@ const ProfileScreen = () => {
             } catch (error) {
                 console.log(error);
             }
-
-        };
-
-        getUserData();
-    }, [route.params?.userIdParameter])
-
-
+        }
+        fetchData()
+    }, [])
     return (
         <View style={styles.pageContainer}>
             <View style={styles.navBar}>
@@ -101,7 +93,7 @@ const ProfileScreen = () => {
     )
 }
 
-export default ProfileScreen
+export default ProfileMemberScreen
 
 const styles = StyleSheet.create({
     postsContainer: {

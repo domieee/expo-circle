@@ -1,12 +1,14 @@
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, Image, StyleSheet, TouchableOpacity, Pressable } from 'react-native'
 import React, { useState } from 'react'
+import { useNavigation } from 'expo-router'
 
 const Comment = ({ commentCreatorAvatar, commentCreator, commentCreatorJob, comment, likes, postId }) => {
+
+    const navigation = useNavigation()
 
     const [likedStatus, setLikedStatus] = useState(false)
 
     const likedLogo = likedStatus ? require('../../assets/img/heart_filled.png') : require('../../assets/img/heart_outlined.png')
-
 
     const likeHandler = () => {
         if (!likedStatus) {
@@ -24,7 +26,9 @@ const Comment = ({ commentCreatorAvatar, commentCreator, commentCreatorJob, comm
 
     return (
         <View style={styles.commentContainer}>
-            <View style={styles.commentCreatorContainer}>
+            <Pressable
+                onPress={() => navigation.push('ProfileMember', { userIdParameter: commentCreator })}
+                style={styles.commentCreatorContainer}>
                 <Image
                     style={styles.commentCreatorAvatar}
                     source={{ uri: commentCreatorAvatar }} />
@@ -36,7 +40,7 @@ const Comment = ({ commentCreatorAvatar, commentCreator, commentCreatorJob, comm
                         {commentCreatorJob}
                     </Text>
                 </View>
-            </View>
+            </Pressable>
             <Text>
                 {comment}
             </Text>

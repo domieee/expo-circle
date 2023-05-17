@@ -6,6 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 // Import your screens/components for the Home tab
 import FeedScreen from '../Screens/FeedScreen';
 import CommentScreen from '../Screens/CommentScreen';
+import ProfileMemberScreen from '../Screens/ProfileMemberScreen';
 import { useState } from 'react';
 
 const Stack = createStackNavigator();
@@ -56,6 +57,7 @@ const HomeStack = () => {
                 component={CommentScreen}
                 name="Comments"
             />
+            <Stack.Screen component={ProfileMemberScreen} name='ProfileMember' />
         </Stack.Navigator>
     );
 };
