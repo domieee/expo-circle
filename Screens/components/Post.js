@@ -24,7 +24,7 @@ const Post = ({ profileImage, postImage, timestamp, userName, jobTitle, hashtags
                     <Image style={styles.avatar} source={{ uri: profileImage }} />
                     <View style={styles.textLineContainer}>
                         <Text style={styles.textBold}>{userName}</Text>
-                        <Text style={styles.text}>{jobTitle}asdsd</Text>
+                        <Text style={styles.text}>{jobTitle}</Text>
                     </View>
                 </Pressable>
 
@@ -46,7 +46,7 @@ const Post = ({ profileImage, postImage, timestamp, userName, jobTitle, hashtags
                 </View>
                 <Text style={styles.caption}>{postCaption}</Text>
                 <View style={styles.hashtags}>
-{/*                     {hashtags.map((hashtag) => (
+                    {/*                     {hashtags.map((hashtag) => (
                         <Text style={styles.hashtag}>{hashtag}</Text>
                     ))} */}
                 </View>
