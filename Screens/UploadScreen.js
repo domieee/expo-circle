@@ -11,7 +11,6 @@ const UploadScreen = () => {
 
    
     const [image, setImage] = useState(null);
-    const [imageData, setImageData] = useState({});
 
     const [imageUrlC, setImageUrlC] = useState(null);
 
@@ -30,20 +29,7 @@ const UploadScreen = () => {
         
             if (!result.canceled) {
         
-              const localUri = result.assets[0].uri;
               setImage(result.assets[0].uri);
-
-              const name = `image/${localUri.split('/')[1].split(';')[0]}`;
-              const type = `image.${localUri.split('/')[1].split(';')[0]}`;
-
-              const newFile = {
-                uri: image,
-                type: 'image/jpeg',
-                name: 'image.jpg',
-               
-              }
-
-              setImageData(newFile)
 
               console.log(imageData)
             }
@@ -52,7 +38,11 @@ const UploadScreen = () => {
           const handelpost = async() => {
             const formData = new FormData();
   
-             formData.append('file', imageData); 
+             formData.append('file', {
+                uri: image,
+                type: 'image/jpeg',
+                name: 'image.jpg',
+             }); 
              formData.append('upload_preset', 'gtythqdr') 
 
             let apiUrl = 'https://api.cloudinary.com/v1_1/djcnvsofd/image/upload'
