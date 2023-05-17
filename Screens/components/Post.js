@@ -5,12 +5,13 @@ const Post = ({ profileImage, postImage, timestamp, userName, jobTitle, hashtags
     console.log(postCaption)
     console.log(hashtags)
     console.log(timestamp)
+
     return (
         <>
             <View style={styles.container}>
                 <Pressable
-                    style={styles.row}
-                    onPress={() => navigation.navigate('ProfileMember', { userIdParameter: userName })} >
+                    onPress={() => { navigation.navigate('ProfileMember', { userIdParameter: userName }) }}
+                    style={styles.row}>
                     < Image style={styles.avatar} source={{ uri: profileImage }} />
                     <View style={styles.textLineContainer}>
                         <Text style={styles.textBold}>{userName}</Text>
@@ -32,7 +33,7 @@ const Post = ({ profileImage, postImage, timestamp, userName, jobTitle, hashtags
                     <View style={styles.touchableOpacity}>
                         <TouchableOpacity
                             style={styles.stats}
-                            onPress={() => navigation.navigate('Comments', { id: id })}>
+                            onPress={() => navigation.navigate('Comments', { id: id, navigation: navigation })}>
                             <Image
                                 style={styles.vector}
                                 source={require('../../assets/img/comment_outlined.png')} />

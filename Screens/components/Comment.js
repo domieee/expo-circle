@@ -1,10 +1,9 @@
 import { View, Text, Image, StyleSheet, TouchableOpacity, Pressable } from 'react-native'
 import React, { useState } from 'react'
-import { useNavigation } from 'expo-router'
 
-const Comment = ({ commentCreatorAvatar, commentCreator, commentCreatorJob, comment, likes, postId }) => {
 
-    const navigation = useNavigation()
+const Comment = ({ commentCreatorAvatar, commentCreator, commentCreatorJob, comment, likes, navigation, postId }) => {
+
 
     const [likedStatus, setLikedStatus] = useState(false)
 
@@ -27,7 +26,7 @@ const Comment = ({ commentCreatorAvatar, commentCreator, commentCreatorJob, comm
     return (
         <View style={styles.commentContainer}>
             <Pressable
-                onPress={() => navigation.push('ProfileMember', { userIdParameter: commentCreator })}
+                onPress={() => navigation.reset('ProfileMember', { userIdParameter: commentCreator })}
                 style={styles.commentCreatorContainer}>
                 <Image
                     style={styles.commentCreatorAvatar}

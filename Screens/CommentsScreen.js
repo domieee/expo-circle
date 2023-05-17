@@ -4,8 +4,7 @@ import Comment from './components/Comment.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import HapticFeedback from "react-native-haptic-feedback";
 
-const CommentScreen = (params) => {
-
+const CommentsScreen = (params, { navigation }) => {
     const [userId, setUserId] = useState("")
 
     const [commentsData, setCommentsData] = useState([])
@@ -16,6 +15,7 @@ const CommentScreen = (params) => {
 
     const postId = params.route.params.id
 
+    console.log(postId)
 
     useEffect(() => {
         const getUserId = async () => {
@@ -89,7 +89,7 @@ const CommentScreen = (params) => {
                                 commentCreatorJob={comment.commentCreatorJob}
                                 comment={comment.comment}
                                 likes={comment.likes}
-
+                                navigation={params.route.params.navigation}
                             />
 
                         )
@@ -112,7 +112,7 @@ const CommentScreen = (params) => {
     );
 };
 
-export default CommentScreen;
+export default CommentsScreen;
 
 const styles = StyleSheet.create({
     commentsContainer: {
