@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { View, StyleSheet, Button, Image,TouchableOpacity , Text, ImageBackground} from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 
 
 const UploadScreen = () => {
 
-
+   
     const [image, setImage] = useState(null);
     const [imageData, setImageData] = useState({});
 
@@ -74,12 +75,13 @@ const UploadScreen = () => {
 
     
     const saveImageToMongoDB = async (imgUrl) => {
-      const data = {
+        const id = await AsyncStorage.getItem('userID');
+        const data = {
           postDescription: title,
           postImage: imgUrl,
           userId:id
       }
-      let id = '645cf948b78d21a328568d27'
+     
       try {
       const res = await axios.post(`http://localhost:3000/api/v1/new-post/${id}`, data);
       console.log(res.data)
@@ -90,45 +92,10 @@ const UploadScreen = () => {
       }
     }
 
-   /*       
-
-     const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
-            if (!permissionResult.granted) {
-                throw new Error('Permission to access media library not granted');
-            }
-
-            const imagePickerResult = await ImagePicker.launchImageLibraryAsync({ mediaType: 'photo' });
-            if (imagePickerResult.cancelled) {
-                console.log('Image picker cancelled');
-                return;
-            }
-   
-   
-   // Create a form data object to send the image file
-         const formData = new FormData();
-         formData.append('file', {
-             uri: imagePickerResult.uri,
-             type: 'image/jpeg',
-             name: 'image.jpg',
-         });
-         formData.append('upload_preset', 'gtythqdr');
-
-         // Upload the image to Cloudinary
-         const response = await fetch('https://api.cloudinary.com/v1_1/djcnvsofd/image/upload', {
-             method: 'POST',
-             body: formData,
-         });
-
-         // Handle the response from Cloudinary
-         const responseData = await response.json();
-         console.log('Image uploaded successfully:', responseData);
-     } catch (error) {
-         console.log('Image upload error:', error);
-     } */
-        
     
     return (
     <View style={styles.container}>
+
           <TouchableOpacity
           style={styles.add}
           onPress={pickImage}>
