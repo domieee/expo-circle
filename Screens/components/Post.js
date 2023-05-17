@@ -57,7 +57,7 @@ const Post = ({ profileImage, postImage, timestamp, userName, jobTitle, hashtags
 
 const styles = StyleSheet.create({
     container: {
-        borderWidth: 0.2,
+        backgroundColor: '#f5f5f5',
         borderColor: '#ffffff',
         borderRadius: 20,
         marginLeft: 'auto',

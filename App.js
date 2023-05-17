@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import AuthNavigator from './AuthNavigator.js';
 import TabNavigator from './TabNavigator.js';
 
@@ -8,6 +8,13 @@ import TabNavigator from './TabNavigator.js';
 const App = () => {
 
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+    useEffect(() => {
+        async function clearSessionData() {
+            await AsyncStorage.clear();
+        }
+        clearSessionData()
+    }, [])
 
     return (
         <NavigationContainer>

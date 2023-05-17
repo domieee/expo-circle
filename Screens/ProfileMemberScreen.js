@@ -39,42 +39,43 @@ const ProfileMemberScreen = () => {
     }, [])
     return (
         <View style={styles.pageContainer}>
-            <View style={styles.navBar}>
-                {/* <Image source={require('../assets/img/logoSmall.png')} /> */}
-                <Text style={styles.navBarText}>{profileData?.userName}</Text>
-            </View>
-            <View style={styles.profileContainer}>
-                <Image style={styles.imageProfile} source={{ uri: profileData?.avatarMidsize }} />
-                <Text style={styles.userName}>{profileData?.fullName}</Text>
-                <Text style={styles.jobTitle}>{profileData?.jobTitle}</Text>
-                <Text style={styles.userDescription}>{profileData?.profileCaption}</Text>
-                <TouchableOpacity onPress={handlePress}>
-                    <Text style={styles.websiteLink}>{profileData?.website}</Text>
-                </TouchableOpacity>
-            </View>
-
-            <View style={styles.userStatsContainer}>
-
-                <View style={styles.userStats}>
-                    <Text style={styles.statsText}>{profileData?.posts?.length}</Text>
-                    <Text style={styles.statsDescription}>Posts</Text>
+            <ScrollView contentOffset={{ y: 0 }} showsVerticalScrollIndicator={false} contentContainerStyle={{ flexDirection: 'row', flexWrap: 'wrap', gap: 5 }} >
+                <View style={styles.navBar}>
+                    {/* <Image source={require('../assets/img/logoSmall.png')} /> */}
+                    <Text style={styles.navBarText}>{profileData?.userName}</Text>
+                </View>
+                <View style={styles.profileContainer}>
+                    <Image style={styles.imageProfile} source={{ uri: profileData?.avatarMidsize }} />
+                    <Text style={styles.userName}>{profileData?.fullName}</Text>
+                    <Text style={styles.jobTitle}>{profileData?.jobTitle}</Text>
+                    <Text style={styles.userDescription}>{profileData?.profileCaption}</Text>
+                    <TouchableOpacity onPress={handlePress}>
+                        <Text style={styles.websiteLink}>{profileData?.website}</Text>
+                    </TouchableOpacity>
                 </View>
 
-                <View style={styles.statsBorder}>
-                    <Text style={styles.statsText}>{profileData?.followerList?.length.toString()}</Text>
-                    <Text style={styles.statsDescription}>Followers</Text>
+                <View style={styles.userStatsContainer}>
+
+                    <View style={styles.userStats}>
+                        <Text style={styles.statsText}>{profileData?.posts?.length}</Text>
+                        <Text style={styles.statsDescription}>Posts</Text>
+                    </View>
+
+                    <View style={styles.statsBorder}>
+                        <Text style={styles.statsText}>{profileData?.followerList?.length.toString()}</Text>
+                        <Text style={styles.statsDescription}>Followers</Text>
+                    </View>
+
+                    <View style={styles.userStats}>
+                        <Text style={styles.statsText}>{profileData?.followingList?.length}</Text>
+                        <Text style={styles.statsDescription}>Following</Text>
+                    </View>
+
+
                 </View>
 
-                <View style={styles.userStats}>
-                    <Text style={styles.statsText}>{profileData?.followingList?.length}</Text>
-                    <Text style={styles.statsDescription}>Following</Text>
-                </View>
 
 
-            </View>
-
-
-            <ScrollView contentOffset={{ y: 0 }} showsVerticalScrollIndicator={false} overScrollMode="always" contentContainerStyle={{ flexDirection: 'row', flexWrap: 'wrap', gap: 5, paddingTop: 15 }} >
                 {posts.map((post) => {
                     return (
                         <View key={post._id} style={styles.postLinkContainer}>
@@ -114,19 +115,19 @@ const styles = StyleSheet.create({
 
     },
     navBar: {
-
+        marginLeft: 'auto',
         flexDirection: "row",
-        alignItems: "center"
+        alignItems: "center",
     },
     navBarText: {
-        marginLeft: 15,
         fontWeight: "700",
         fontSize: 17
     },
     pageContainer: {
+
         paddingLeft: 25,
         paddingRight: 25,
-        paddingTop: 60
+        backgroundColor: '#fff'
     },
     imageProfile: {
         width: 170,
@@ -155,8 +156,9 @@ const styles = StyleSheet.create({
 
     },
     profileContainer: {
-        paddingLeft: 30,
-        paddingRight: 30
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        marginTop: 20
     },
     websiteLink: {
         color: "#799df9",
@@ -196,6 +198,6 @@ const styles = StyleSheet.create({
     },
     statsDescription: {
         fontSize: 15
-    }
+    },
 
 }); 

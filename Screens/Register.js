@@ -31,7 +31,8 @@ const Register = ({ navigation }) => {
             console.log(responseData); // Log the response data
 
             if (response.ok) {
-                await AsyncStorage.setItem('userID', responseData);
+                // await AsyncStorage.setItem('userID', responseData);
+                console.log('moin')
                 navigation.navigate('RegisterDetails')
             } else if (response.status === 400) {
                 setErrorMsg(responseData.msg);
@@ -61,6 +62,7 @@ const Register = ({ navigation }) => {
                 placeholder='John'
                 placeholderTextColor="#808080"
             />
+
             <TextInput
                 onChangeText={e => {
                     setLastName(e)
@@ -71,6 +73,7 @@ const Register = ({ navigation }) => {
                 placeholder='Doe'
                 placeholderTextColor="#808080"
             />
+
             <TextInput
                 onChangeText={e => {
                     setMail(e)
@@ -104,7 +107,7 @@ const Register = ({ navigation }) => {
             />
 
             <Button
-                onPress={sendRegisterData}
+                onPress={() => sendRegisterData()}
                 title='Create Account' />
 
             <Text style={styles.error}>

@@ -9,9 +9,6 @@ const Login = ({ navigation, isAuthenticated, setIsAuthenticated }) => {
     const [mail, setMail] = useState('');
     const [password, setPassword] = useState('');
 
-    // const router = useRouter();
-
-
     const sendLoginData = async () => {
         try {
             const response = await fetch('https://circle-backend-2-s-guettner.vercel.app/api/v1/login', {

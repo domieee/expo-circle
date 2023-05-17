@@ -12,12 +12,7 @@ const Stack = createStackNavigator();
 
 const AuthNavigator = ({ isAuthenticated, setIsAuthenticated }) => {
     return (
-        <Stack.Navigator
-            screenOptions={{
-                headerShown: false, // Hide the header if desired
-                animationTypeForReplace: 'fade', // Specify the transition animation type
-            }}
-        >
+        <Stack.Navigator>
             <Stack.Screen
                 name="Onboarding"
                 component={Onboarding}
@@ -30,12 +25,12 @@ const AuthNavigator = ({ isAuthenticated, setIsAuthenticated }) => {
             />
             <Stack.Screen
                 name="Register"
-                component={Register}
+                component={(props) => <Register {...props} navigation={props.navigation} />}
                 options={{ headerShown: false }}
             />
             <Stack.Screen
                 name="RegisterDetails"
-                component={RegisterDetails}
+                component={(props) => <RegisterDetails {...props} navigation={props.navigation} isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />}
                 options={{ headerShown: false }}
             />
         </Stack.Navigator>

@@ -56,7 +56,24 @@ const HomeStack = () => {
 
 
             />
-            <Stack.Screen component={ProfileMemberScreen} name='ProfileMember' />
+            <Stack.Screen
+                component={ProfileMemberScreen}
+                name='ProfileMember'
+                options={({ navigation }) => ({
+                    headerTitle: '',
+                    headerTitleAlign: 'center',
+                    headerLeft: () => (
+                        <TouchableOpacity onPress={() => navigation.goBack()}>
+                            <Ionicons
+                                name="arrow-back"
+                                style={{ paddingLeft: 20 }}
+                                size={24}
+                                color="black" />
+                        </TouchableOpacity>
+                    ),
+                    tabBarVisible: false
+                })}
+            />
         </Stack.Navigator>
     );
 };

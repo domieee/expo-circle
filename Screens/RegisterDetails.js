@@ -38,7 +38,6 @@ const RegisterDetails = ({ isAuthenticated, setIsAuthenticated }) => {
                 placeholder='www.janedoe.com'
                 placeholderTextColor="#808080"
             />
-            <Button title='Submit' onPress={() => setIsAuthenticated(true)} />
         </View>
     )
 }
