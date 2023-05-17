@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Button, Image,TouchableOpacity , Text, ImageBackground} from 'react-native';
+import { View, StyleSheet, Button, Image,TouchableOpacity , Text, ImageBackground, TextInput} from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -86,6 +86,11 @@ const UploadScreen = () => {
     return (
     <View style={styles.container}>
 
+         <Image
+        source={{uri: image}}
+        style={styles.image}
+         />   
+
           <TouchableOpacity
           style={styles.add}
           onPress={pickImage}>
@@ -99,13 +104,8 @@ const UploadScreen = () => {
           onPress={handelpost}
           >
              <Text style={styles.text}
-             > Upload </Text>
+             > Post </Text>
           </TouchableOpacity>
-
-           <Image
-        source={{uri: image}}
-        style={styles.image}
-         />
 
           {imageUrlC&& <Image
         source={{uri: imageUrlC}}
@@ -130,21 +130,26 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
       marginVertical: 10,
+      borderRadius:50,
     },
     add: {
         position: 'relative',
-        width: 200,
-        height: 200,
+        width: 40,
+        height: 40,
         backgroundColor: '#FF6247',
         alignItems: 'center',
         justifyContent: 'center',
-        marginVertical: 10,
+        /* marginVertical: 0, */
         fontSize: '40px',
+        borderRadius:'50%',
+
     },
     image: {
       width: 150,
       height: 150,
       marginVertical: 10,
+      borderWidth:1,
+      borderColor: '#FF6247',
     },
     text: {
         color: 'white',
