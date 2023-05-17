@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     button: {
       width: 200,
       height: 50,
-      backgroundColor: '#FF6247',
+      backgroundColor: '#FE5B74',
       alignItems: 'center',
       justifyContent: 'center',
       marginVertical: 10,
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
         position: 'relative',
         width: 40,
         height: 40,
-        backgroundColor: '#FF6247',
+        backgroundColor: '#FE5B74',
         alignItems: 'center',
         justifyContent: 'center',
         /* marginVertical: 0, */
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
       height: 200,
       marginVertical: 10,
       borderWidth:1,
-      borderColor: '#FF6247',
+      borderColor: '#FE5B74',
       borderStyle: 'dotted',
       borderRadius: 20,
     },
