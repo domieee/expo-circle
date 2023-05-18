@@ -3,7 +3,7 @@ import { View, Text, TextInput, Image, StyleSheet, Button, TouchableOpacity } fr
 import * as ImagePicker from 'expo-image-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const UploadScreen = () => {
+const UploadScreen = ({ navigation }) => {
     const [image, setImage] = useState(null);
 
     const [postImage, setPostImage] = useState('');
@@ -17,6 +17,13 @@ const UploadScreen = () => {
     const [profileData, setProfileData] = useState([]);
 
     const [postDescription, setPostDescription] = useState('');
+
+    const feedNavigation = () => {
+        navigation.navigate('/feed');
+        
+    };
+
+
 
     useEffect(() => {
         const getUserData = async () => {
@@ -66,6 +73,8 @@ const UploadScreen = () => {
             });
             const userData = await response.json();
             console.log(userData);
+            navigation.navigate('Feed');
+            feedNavigation;
         } catch (error) {
             console.log(error);
         }
