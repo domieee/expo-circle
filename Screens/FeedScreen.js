@@ -14,6 +14,26 @@ const FeedScreen = ({ navigation }) => {
     const [scrollPosition, setScrollPosition] = useState(0);
     const [reload, setReload] = useState(false)
 
+
+    const [isTabActive, setIsTabActive] = useState(true);
+
+    useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', () => {
+            setIsTabActive(true);
+        });
+
+        return unsubscribe;
+    }, [navigation]);
+
+    useEffect(() => {
+        const unsubscribe = navigation.addListener('blur', () => {
+            setIsTabActive(false);
+        });
+
+        return unsubscribe;
+    }, [navigation]);
+
+
     const fetchFeed = async () => {
         try {
             const userID = await AsyncStorage.getItem('userID');
@@ -79,7 +99,8 @@ const FeedScreen = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            {isLoading ? (
+
+            {isTabActive && isLoading ? (
                 <FlatList
                     style={styles.postContainer}
                     data={new Array(10).fill(null)}
