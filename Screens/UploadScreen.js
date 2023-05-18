@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, Image, StyleSheet, Button, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, Image, StyleSheet, Button, TouchableOpacity, ImageBackground } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -123,25 +123,42 @@ const UploadScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
             {/* Display the uploaded image */}
-            <Image style={styles.avatar} source={!postImage ? require('../assets/img/placeholderPost.png') : { uri: image }} />
-            {/*  <Image style={styles.avatar} source={{ uri: profileImage }} /> */}
+            <ImageBackground source={require('../assets/img/wave-upload.png')} style={styles.imageBackground}>
+                <View>
+                    <Image style={styles.avatar} source={!postImage ? require('../assets/img/placeholderPost.png') : { uri: image }} />
+                    <Button title="Upload Image" onPress={handleImageUpload} />
+                </View>
+                {/*  <Image style={styles.avatar} source={{ uri: profileImage }} /> */}
 
-            {/* Button to trigger image upload */}
-            <Button title="Upload Image" onPress={handleImageUpload} />
-            <TextInput onChangeText={setPostDescription} value={postDescription} styles={styles.input} placeholder="Title" />
-            <TouchableOpacity style={styles.button} onPress={createPost}>
-                <Text>NEW POST!!!!!!!!!</Text>
-            </TouchableOpacity>
+                {/* Button to trigger image upload */}
+                <View style={styles.input}>
+                    <TextInput
+                        editable
+                        multiline
+                        numberOfLines={4}
+                        onChangeText={setPostDescription}
+                        value={postDescription}
+                        style={{ padding: 10 }}
+                        placeholder="Tell your Story..."
+                    />
+                </View>
+                <TouchableOpacity style={styles.button} onPress={createPost}>
+                    <Text style={styles.buttonText}>Create Post</Text>
+                </TouchableOpacity>
+            </ImageBackground>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        justifyContent: 'center',
+        /* flex: 1, */
+        justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: '#ecf0f1',
+        backgroundColor: 'white',
+        /* paddingTop: 300, */
+        paddingBottom: 30,
+        height: '100%',
     },
     image: {
         width: 200,
@@ -151,18 +168,32 @@ const styles = StyleSheet.create({
         width: 150,
         height: 150,
         borderRadius: 20,
+        marginTop:50
     },
     input: {
         borderWidth: 1,
+        borderColor: '#E98090',
+        borderRadius: 20,
+        marginTop: 30,
+        paddingRight: 200,
     },
     button: {
         width: 200,
         height: 50,
-        backgroundColor: '#FE5B74',
+        backgroundColor: '#E98090',
         alignItems: 'center',
         justifyContent: 'center',
         marginVertical: 10,
         borderRadius: 50,
+    },
+    buttonText: {
+        color: 'white',
+    },
+    imageBackground: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        height: '100%',
     },
 });
 

@@ -2,6 +2,7 @@ import { View, Text, TextInput, Image, StyleSheet, Button, TouchableOpacity } fr
 import React, { useState } from 'react'
 import * as ImagePicker from 'expo-image-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Pressable } from 'react-native-web';
 
 
 const RegisterDetails = ({ isAuthenticated, setIsAuthenticated }) => {
@@ -91,81 +92,86 @@ const RegisterDetails = ({ isAuthenticated, setIsAuthenticated }) => {
 
     return (
         <View style={styles.centered}>
-            <Image
-                style={styles.avatar}
-                source={!image ? require('../assets/img/placeholder.png') : { uri: image }} />
-            
-            <Button title="Upload Image" onPress={handleImageUpload} />
-            
+            <Image style={styles.avatar} source={!image ? require('../assets/img/placeholder.png') : { uri: image }} />
+
+         {/*    <Button title="Upload Image" onPress={handleImageUpload} /> */}
+
+            <Pressable style={styles.uploadButton} onPress={handleImageUpload}>
+                <Text style={styles.uploadText}>Upload Image</Text>
+            </Pressable>
+
             <Text>Tell a bit more about you!</Text>
+
+            {/* <Text>First Name</Text> */}
             <TextInput
-                onChangeText={e => {
-                    setFirstName(e)
+                onChangeText={(e) => {
+                    setFirstName(e);
                 }}
                 style={styles.input}
-
                 editable
-                placeholder='John'
+                placeholder="first name"
                 placeholderTextColor="#808080"
             />
 
+            {/* <Text>Last Name</Text> */}
             <TextInput
-                onChangeText={e => {
-                    setLastName(e)
+                onChangeText={(e) => {
+                    setLastName(e);
                 }}
                 style={styles.input}
-
                 editable
-                placeholder='Doe'
+                placeholder="last name"
                 placeholderTextColor="#808080"
             />
+            {/* <Text>Describe yourself</Text> */}
             <TextInput
-                onChangeText={e => {
-                    setUserDescription(e)
+                onChangeText={(e) => {
+                    setUserDescription(e);
                 }}
                 numberOfLines={1}
                 style={styles.input}
                 editable
-                placeholder='Embracing life at any moment!'
+                placeholder="Describe yourself..."
                 placeholderTextColor="#808080"
             />
+            {/* <Text>Job-title</Text> */}
             <TextInput
-                onChangeText={e => {
-                    setJobTitle(e)
+                onChangeText={(e) => {
+                    setJobTitle(e);
                 }}
-                autoCapitalize='words'
+                autoCapitalize="words"
                 style={styles.input}
                 editable
-                placeholder='Product Implementation Specialist'
+                placeholder="job title"
                 placeholderTextColor="#808080"
             />
+            {/*   <Text>phone number</Text> */}
             <TextInput
-                onChangeText={e => {
-                    setPhoneNumber(e)
-                }}
-                style={styles.input}
-                editable
-                keyboardType='numeric'
-                placeholder='123-456-789'
-                placeholderTextColor="#808080"
-            />
-            <TextInput
-                onChangeText={e => {
-                    setWebsite(e)
+                onChangeText={(e) => {
+                    setPhoneNumber(e);
                 }}
                 style={styles.input}
                 editable
-                keyboardType='url'
-                placeholder='www.janedoe.com'
+                keyboardType="numeric"
+                placeholder="phone number"
                 placeholderTextColor="#808080"
             />
-            <TouchableOpacity
-                onPress={fetchRegisterDetails}
-                style={styles.appButtonContainer}>
+            {/*  <Text>Website</Text> */}
+            <TextInput
+                onChangeText={(e) => {
+                    setWebsite(e);
+                }}
+                style={styles.input}
+                editable
+                keyboardType="url"
+                placeholder="website"
+                placeholderTextColor="#808080"
+            />
+            <TouchableOpacity onPress={fetchRegisterDetails} style={styles.appButtonContainer}>
                 <Text style={styles.login}>Submit</Text>
             </TouchableOpacity>
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
@@ -173,7 +179,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'white '
+        backgroundColor: 'white',
     },
     input: {
         width: 300,
@@ -186,7 +192,33 @@ const styles = StyleSheet.create({
         width: 100,
         height: 100,
         borderRadius: 100,
-    }
-})
+        margin: 20,
+    },
+    appButtonContainer: {
+        marginTop: 20,
+        backgroundColor: '#E98090',
+        paddingLeft: 50,
+        paddingRight: 50,
+        borderRadius: 100,
+        paddingTop: 10,
+        paddingBottom: 10,
+    },
+    login: {
+        color: 'white',
+    },
+    uploadText: {
+        color:"white"
+    },
+    uploadButton: {
+        marginTop: 10,
+        backgroundColor: '#E98090',
+        paddingLeft: 30,
+        paddingRight: 30,
+        borderRadius: 30,
+        paddingTop: 5,
+        paddingBottom: 5,
+        marginBottom:15
+    },
+});
 
 export default RegisterDetails

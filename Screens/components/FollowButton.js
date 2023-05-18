@@ -1,15 +1,18 @@
 import { TouchableOpacity, Linking, View, Text, StyleSheet, Image, ScrollView, Button, Pressable } from 'react-native';
 import React, { useEffect, useState } from 'react';
 
-const FollowButton = ({ fullName, image }) => {
+const FollowButton = ({ fullName, image,navigation }) => {
     const [renderState, setRenderState] = useState(false);
 
     return (
         <View style={styles.searchedUserContainer}>
-            <View style={styles.nameContainer}>
-                <Image style={styles.image} source={{ uri: image }} />
-                <Text style={styles.textName}>{fullName}</Text>
-            </View>
+            <Pressable onPress={() => navigation.navigate('ProfileMember', { userIdParameter: fullName })}>
+
+                <View style={styles.nameContainer}>
+                    <Image style={styles.image} source={{ uri: image }} />
+                    <Text style={styles.textName}>{fullName}</Text>
+                </View>
+            </Pressable>
             <Pressable onPress={() => setRenderState((prev) => !prev)} style={renderState ? styles.buttonClicked : styles.button}>
                 <Text style={renderState ? styles.textClicked : styles.text}>{renderState ? 'Unfollow' : 'Follow'}</Text>
             </Pressable>

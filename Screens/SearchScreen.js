@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import FollowButton from './components/FollowButton';
 
-const Search = () => {
+const Search = ({navigation}) => {
 
     const [users, setUsers] = useState([])
     const [isLoading, setIsLoading] = useState(false);
@@ -190,7 +190,7 @@ const Search = () => {
                     {searchedUser &&
                         searchedUser.map((user) => {
                             console.log(user.avatarSmall);
-                            return <FollowButton key={user._id} fullName={user.fullName} image={user.avatarSmall} />;
+                            return <FollowButton key={user._id} navigation={navigation} fullName={user.fullName} image={user.avatarSmall} />;
                         })}
                 </ScrollView>
             </SafeAreaView>
