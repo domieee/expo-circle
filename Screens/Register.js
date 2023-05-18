@@ -1,4 +1,4 @@
-import { View, TextInput, StyleSheet, Text, Button, TouchableOpacity, Image } from 'react-native'
+import { View, TextInput, StyleSheet, Text, Button, TouchableOpacity, Image ,ImageBackground, Pressable} from 'react-native'
 import { useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -41,67 +41,66 @@ const Register = ({ navigation }) => {
 
     return (
         <View style={styles.loginForm}>
-            <Image
-                source={require('../assets/img/circle_logo.png')} />
-            <Text>Register</Text>
+            <ImageBackground source={require('../assets/img/wave-haikei(3).png')} style={styles.image}>
+                <Image style={styles.logo} source={require('../assets/img/circle_logo.png')} />
+                <Text style={styles.textRegister}>Register</Text>
 
-            <TextInput
-                onChangeText={e => {
-                    setMail(e)
-                }}
-                style={styles.input}
-                editable
-                placeholder='johndoe@mail.com'
-                placeholderTextColor="#808080"
-            />
+                <TextInput
+                    onChangeText={(e) => {
+                        setMail(e);
+                    }}
+                    style={styles.input}
+                    editable
+                    placeholder="johndoe@mail.com"
+                    placeholderTextColor="#808080"
+                />
 
-            <TextInput
-                onChangeText={e => {
-                    setPassword(e)
-                }}
-                secureTextEntry={true}
-                style={styles.input}
-                editable
-                placeholder='Password'
-                placeholderTextColor="#808080"
-            />
+                <TextInput
+                    onChangeText={(e) => {
+                        setPassword(e);
+                    }}
+                    secureTextEntry={true}
+                    style={styles.input}
+                    editable
+                    placeholder="Password"
+                    placeholderTextColor="#808080"
+                />
 
-            <TextInput
-                onChangeText={e => {
-                    setConfirmationPassword(e)
-                }}
-                secureTextEntry={true}
-                style={styles.input}
-                editable
-                placeholder='Confirm password'
-                placeholderTextColor="#808080"
-            />
+                <TextInput
+                    onChangeText={(e) => {
+                        setConfirmationPassword(e);
+                    }}
+                    secureTextEntry={true}
+                    style={styles.input}
+                    editable
+                    placeholder="Confirm password"
+                    placeholderTextColor="#808080"
+                />
 
-            <Button
-                onPress={() => sendRegisterData()}
-                title='Create Account' />
+                {/* <Button onPress={() => sendRegisterData()} title="Create Account" /> */}
+                <Pressable onPress={() => sendRegisterData()} style={styles.buttonRegister}>
+                    <Text style={styles.textLogin}>CREATE ACCOUNT</Text>
+                </Pressable>
+                <Text style={styles.error}>{errorMsg}</Text>
 
-            <Text style={styles.error}>
-                {errorMsg}
-            </Text>
+                <Text style={styles.registeredText}>Already registered?</Text>
 
-            <Text>
-                Already registered?
-            </Text>
-
-            <TouchableOpacity onPress={goBack} style={styles.appButtonContainer}>
-                <Text style={styles.login}>Sign in</Text>
-            </TouchableOpacity>
-
+                <TouchableOpacity onPress={goBack} style={styles.appButtonContainer}>
+                    <Text style={styles.login}>Sign in</Text>
+                </TouchableOpacity>
+            </ImageBackground>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     loginForm: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
+        /* alignItems: 'center', */
+        justifyContent: 'space-between',
+        backgroundColor: 'white',
+        flexDirection: 'column',
+        height: '100%',
+        marginBottom: 200,
     },
     input: {
         width: 300,
@@ -111,11 +110,48 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     login: {
-        fontSize: 10
+        fontSize: 10,
     },
     error: {
-        color: 'red'
+        color: 'red',
+    },
+    textRegister: {
+        marginTop: 20,
+        fontSize:20,
+    
+    },
+    logo: {
+        marginTop: 50,
+    },
+    image: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        height: '100%',
+    },
+    buttonRegister: {
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        backgroundColor: 'white',
+        paddingLeft: 50,
+        paddingRight: 50,
+        paddingTop: 10,
+        paddingBottom: 10,
+        borderRadius: 100,
+        marginTop:70
+    },
+    textLogin: {
+        color: '#E98090',
+        fontSize: 20,
+
+    },
+    login:{
+        color:"white"
+    },
+    registeredText:{
+        color:"white",
+        margin:5
     }
-})
+});
 
 export default Register;
