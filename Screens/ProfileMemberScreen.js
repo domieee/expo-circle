@@ -39,11 +39,11 @@ const ProfileMemberScreen = () => {
     }, [])
     return (
         <View style={styles.pageContainer}>
-            <ScrollView contentOffset={{ y: 0 }} showsVerticalScrollIndicator={false} contentContainerStyle={{ flexDirection: 'row', flexWrap: 'wrap', gap: 5 }} >
-                <View style={styles.navBar}>
-                    {/* <Image source={require('../assets/img/logoSmall.png')} /> */}
+            <ScrollView contentOffset={{ y: 0 }} showsVerticalScrollIndicator={false} contentContainerStyle={{ flexDirection: 'row', flexWrap: 'wrap'}} >
+{/*                 <View style={styles.navBar}>
+                    <Image source={require('../assets/img/logoSmall.png')} />
                     <Text style={styles.navBarText}>{profileData?.userName}</Text>
-                </View>
+                </View> */}
                 <View style={styles.profileContainer}>
                     <Image style={styles.imageProfile} source={{ uri: profileData?.avatarMidsize }} />
                     <Text style={styles.userName}>{profileData?.fullName}</Text>
@@ -97,86 +97,73 @@ const ProfileMemberScreen = () => {
 export default ProfileMemberScreen
 
 const styles = StyleSheet.create({
-    postsContainer: {
-
-
-
-
-
-        /*         gap:5,
-                justifyContent:"flex-start",
-                flexWrap:"wrap" */
-
-    },
+    postsContainer: {},
     postLinkContainer: {
         height: 110,
         width: 110,
         borderRadius: 10,
+        margin:1
 
     },
     navBar: {
-        marginLeft: 'auto',
-        flexDirection: "row",
-        alignItems: "center",
+        flexDirection: 'row',
+        alignItems: 'center',
     },
     navBarText: {
-        fontWeight: "700",
-        fontSize: 17
+        marginLeft: 15,
+        fontWeight: '700',
+        fontSize: 17,
     },
     pageContainer: {
-
         paddingLeft: 25,
         paddingRight: 25,
-        backgroundColor: '#fff'
+        paddingTop: 60,
     },
     imageProfile: {
-        width: 170,
-        height: 170,
+        width: 100,
+        height: 100,
         borderRadius: 200,
-        marginRight: "auto",
-        marginLeft: "auto",
+        marginRight: 'auto',
+        marginLeft: 'auto',
         marginTop: 20,
-        marginBottom: 10
-
+        marginBottom: 10,
     },
     jobTitle: {
         marginBottom: 15,
-        textAlign: "center"
+        textAlign: 'center',
     },
     userDescription: {
         marginBottom: 10,
         textAlign: 'center',
-
     },
     userName: {
-        fontWeight: "bold",
+        fontWeight: 'bold',
         fontSize: 25,
         marginBottom: 10,
-        textAlign: "center"
-
+        textAlign: 'center',
     },
     profileContainer: {
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        marginTop: 20
+/*         paddingLeft: 30,
+        paddingRight: 30, */
+        marginRight:"auto",
+        marginLeft:"auto"
     },
     websiteLink: {
-        color: "#799df9",
-        fontWeight: "bold",
+        color: '#799df9',
+        fontWeight: 'bold',
         fontSize: 12,
         marginBottom: 20,
-        textAlign: "center"
+        textAlign: 'center',
     },
     userStatsContainer: {
-
-        flexDirection: "row",
-
-        justifyContent: "center",
+        flexDirection: 'row',
+        paddingLeft: 30,
+        paddingRight: 30,
+        justifyContent: 'space-evenly',
         paddingBottom: 20,
         borderBottomWidth: 1,
-        borderBottomColor: "lightgrey",
-        /* marginBottom:10 */
-
+        borderBottomColor: 'lightgrey',
+        marginBottom:10
     },
     userStats: {
         textAlign: 'center',
@@ -184,20 +171,23 @@ const styles = StyleSheet.create({
     statsBorder: {
         borderLeftWidth: 1,
         borderRightWidth: 1,
-        borderLeftColor: "lightgrey",
-        borderRightColor: "lightgrey",
+        borderLeftColor: 'lightgrey',
+        borderRightColor: 'lightgrey',
         textAlign: 'center',
         paddingLeft: 40,
         paddingRight: 40,
         marginLeft: 40,
-        marginRight: 40
+        marginRight: 40,
     },
     statsText: {
-        fontSize: 21,
-        fontWeight: "bold"
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginLeft: 'auto',
+        marginRight: 'auto',
     },
     statsDescription: {
-        fontSize: 15
+        fontSize: 12,
+        paddingLeft: 2,
+        textAlign: 'center',
     },
-
 }); 
