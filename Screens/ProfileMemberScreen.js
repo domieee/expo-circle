@@ -2,6 +2,7 @@ import { TouchableOpacity, Linking, View, Text, StyleSheet, Image, ScrollView } 
 import React, { useEffect, useState } from 'react'
 import PostLink from './components/PostLink.js';
 import { useRoute } from '@react-navigation/native'
+import FollowButton from './components/FollowButton.js';
 
 const ProfileMemberScreen = () => {
     const [postId, setPostId] = useState()
@@ -39,8 +40,11 @@ const ProfileMemberScreen = () => {
     }, [])
     return (
         <View style={styles.pageContainer}>
-            <ScrollView contentOffset={{ y: 0 }} showsVerticalScrollIndicator={false} contentContainerStyle={{ flexDirection: 'row', flexWrap: 'wrap'}} >
-{/*                 <View style={styles.navBar}>
+            <ScrollView
+                contentOffset={{ y: 0 }}
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+                {/*                 <View style={styles.navBar}>
                     <Image source={require('../assets/img/logoSmall.png')} />
                     <Text style={styles.navBarText}>{profileData?.userName}</Text>
                 </View> */}
@@ -54,8 +58,11 @@ const ProfileMemberScreen = () => {
                     </TouchableOpacity>
                 </View>
 
-                <View style={styles.userStatsContainer}>
+                <View>
+                    <FollowButton fullName={user.fullName} image={user.avatarSmall} />;
+                </View>
 
+                <View style={styles.userStatsContainer}>
                     <View style={styles.userStats}>
                         <Text style={styles.statsText}>{profileData?.posts?.length}</Text>
                         <Text style={styles.statsDescription}>Posts</Text>
@@ -70,28 +77,18 @@ const ProfileMemberScreen = () => {
                         <Text style={styles.statsText}>{profileData?.followingList?.length}</Text>
                         <Text style={styles.statsDescription}>Following</Text>
                     </View>
-
-
                 </View>
-
-
 
                 {posts.map((post) => {
                     return (
                         <View key={post._id} style={styles.postLinkContainer}>
-                            <PostLink
-                                postImage={post.postImage}
-                                postId={post._id}
-                                setPostId={setPostId}
-                            />
+                            <PostLink postImage={post.postImage} postId={post._id} setPostId={setPostId} />
                         </View>
-
-                    )
+                    );
                 })}
             </ScrollView>
-
         </View>
-    )
+    );
 }
 
 export default ProfileMemberScreen
