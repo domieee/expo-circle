@@ -10,7 +10,7 @@ const RegisterDetails = ({ isAuthenticated, setIsAuthenticated }) => {
     const [profileImage, setProfileImage] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [profileDescription, setProfileDescription] = useState('');
+    const [userDescription, setUserDescription] = useState('');
     const [jobTitle, setJobTitle] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [website, setWebsite] = useState('');
@@ -29,8 +29,8 @@ const RegisterDetails = ({ isAuthenticated, setIsAuthenticated }) => {
                     fullName: `${firstName} ${lastName}`,
                     firstName: firstName,
                     lastName: lastName,
-                    profileImage: profileImage,
-                    profileDescription: profileDescription,
+                    avatarMidsize: profileImage,
+                    userDescription: userDescription,
                     jobTitle: jobTitle,
                     phoneNumber: phoneNumber,
                     website: website
@@ -119,7 +119,7 @@ const RegisterDetails = ({ isAuthenticated, setIsAuthenticated }) => {
             />
             <TextInput
                 onChangeText={e => {
-                    setProfileDescription(e)
+                    setUserDescription(e)
                 }}
                 numberOfLines={1}
                 style={styles.input}

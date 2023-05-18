@@ -10,6 +10,7 @@ const Login = ({ navigation, isAuthenticated, setIsAuthenticated }) => {
     const [password, setPassword] = useState('');
 
     const sendLoginData = async () => {
+        console.log('first')
         try {
             const response = await fetch('https://circle-backend-2-s-guettner.vercel.app/api/v1/login', {
                 method: 'POST',
@@ -17,7 +18,7 @@ const Login = ({ navigation, isAuthenticated, setIsAuthenticated }) => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    mail: mail,
+                    email: mail,
                     password: password,
                 }),
             });
