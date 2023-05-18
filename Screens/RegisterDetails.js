@@ -131,7 +131,7 @@ const RegisterDetails = ({ isAuthenticated, setIsAuthenticated }) => {
                 onChangeText={e => {
                     setJobTitle(e)
                 }}
-                autoCapitalize='characters'
+                autoCapitalize='words'
                 style={styles.input}
                 editable
                 placeholder='Product Implementation Specialist'

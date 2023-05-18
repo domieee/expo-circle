@@ -24,8 +24,8 @@ const Login = ({ navigation, isAuthenticated, setIsAuthenticated }) => {
             });
             if (response.ok) {
                 console.log('asdasd')
-                const userID = await response.json()
-                await AsyncStorage.setItem('userID', userID)
+                const res = await response.json()
+                await AsyncStorage.setItem('userID', res._id)
                 setIsAuthenticated(true)
             } else if (response.statusCode === 400) {
                 const error = await response.json()

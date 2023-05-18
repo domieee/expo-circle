@@ -5,6 +5,9 @@ import AuthNavigator from './AuthNavigator.js';
 import TabNavigator from './TabNavigator.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs();//Ignore all log notifications
 
 const App = () => {
 
@@ -30,11 +33,3 @@ const App = () => {
 }
 
 export default App
-
-const style = StyleSheet.create({
-    flex: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-    }
-})

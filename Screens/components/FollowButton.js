@@ -1,9 +1,9 @@
-import { TouchableOpacity, Linking, View, Text, StyleSheet, Image, ScrollView ,Button,Pressable} from 'react-native';
+import { TouchableOpacity, Linking, View, Text, StyleSheet, Image, ScrollView, Button, Pressable } from 'react-native';
 import React, { useEffect, useState } from 'react';
 
 const FollowButton = ({ fullName, image }) => {
     const [renderState, setRenderState] = useState(false);
-    
+
     return (
         <View style={styles.searchedUserContainer}>
             <View style={styles.nameContainer}>
@@ -56,7 +56,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         width: 70,
         marginLeft: "auto",
-        marginRight:"auto"
+        marginRight: "auto",
+        textAlign: 'center'
     },
     textClicked: {
         textAlign: 'center',
@@ -64,7 +65,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         width: 70,
         marginLeft: "auto",
-        marginRight:"auto"
+        marginRight: "auto"
     },
     button: {
         borderRadius: 10,

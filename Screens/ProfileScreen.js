@@ -176,8 +176,9 @@ const styles = StyleSheet.create({
     userStatsContainer: {
 
         flexDirection: "row",
-
-        justifyContent: "center",
+        paddingLeft: 30,
+        paddingRight: 30,
+        justifyContent: "space-evenly",
         paddingBottom: 20,
         borderBottomWidth: 1,
         borderBottomColor: "lightgrey",
@@ -199,10 +200,14 @@ const styles = StyleSheet.create({
         marginRight: 40
     },
     statsText: {
-        fontSize: 21,
-        fontWeight: "bold"
+        fontSize: 20,
+        fontWeight: "bold",
+        marginLeft: 'auto',
+        marginRight: 'auto'
     },
     statsDescription: {
-        fontSize: 15
+        fontSize: 12,
+        paddingLeft: 2,
+        textAlign: 'center'
     }
 }); 
