@@ -94,7 +94,9 @@ const RegisterDetails = ({ isAuthenticated, setIsAuthenticated }) => {
             <Image
                 style={styles.avatar}
                 source={!image ? require('../assets/img/placeholder.png') : { uri: image }} />
+            
             <Button title="Upload Image" onPress={handleImageUpload} />
+            
             <Text>Tell a bit more about you!</Text>
             <TextInput
                 onChangeText={e => {
