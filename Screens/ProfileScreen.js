@@ -139,8 +139,8 @@ const styles = StyleSheet.create({
         paddingTop: 60
     },
     imageProfile: {
-        width: 170,
-        height: 170,
+        width: 100,
+        height: 100,
         borderRadius: 200,
         marginRight: "auto",
         marginLeft: "auto",
