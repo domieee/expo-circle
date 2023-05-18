@@ -14,18 +14,7 @@ const FeedScreen = ({ navigation }) => {
     const [page, setPage] = useState(1);
     const [scrollPosition, setScrollPosition] = useState(0);
 
-    const [reload, setReload] = useState(false);
-
-    const route = useRoute();
-    /* 
-    if(route.params.toggleState === undefined){
-        console.log("no rerender")
-    }else{    
-        setReload(prev => !prev)
-    }
-    */
-
-   
+    const [reload, setReload] = useState(false)
 
     const [isTabActive, setIsTabActive] = useState(true);
 
@@ -44,7 +33,6 @@ const FeedScreen = ({ navigation }) => {
 
         return unsubscribe;
     }, [navigation]);
-
 
 
     useEffect(() => {
@@ -115,7 +103,8 @@ const FeedScreen = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            {isLoading ? (
+
+            {isTabActive && isLoading ? (
                 <FlatList
                     style={styles.postContainer}
                     data={new Array(10).fill(null)}
