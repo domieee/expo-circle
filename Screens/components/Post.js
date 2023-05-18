@@ -1,9 +1,21 @@
 import { View, Text, Image, StyleSheet, TouchableOpacity, Pressable } from 'react-native';
 import React, { useState } from 'react';
 
-const Post = ({ profileImage, postImage, timestamp, userName, jobTitle, hashtags, likes, comments, navigation, postCaption, id }) => {
-
-   /*  console.log(timestamp); */
+const Post = ({
+    profileImage,
+    postImage,
+    timestamp,
+    userName,
+    jobTitle,
+    hashtags,
+    likes,
+    comments,
+    navigation,
+    postCaption,
+    id,
+    postDescription,
+}) => {
+    /*  console.log(timestamp); */
 
     // like toggle
     const [likeToggle, setLikeToggle] = useState(false);
@@ -44,7 +56,7 @@ const Post = ({ profileImage, postImage, timestamp, userName, jobTitle, hashtags
                         <Text style={styles.statsText}>{comments}</Text>
                     </View>
                 </View>
-                <Text style={styles.caption}>{postCaption}</Text>
+                <Text style={styles.caption}>{postCaption === undefined  || postCaption === null ? postDescription : postCaption}</Text>
                 <View style={styles.hashtags}>
                     {/*                     {hashtags.map((hashtag) => (
                         <Text style={styles.hashtag}>{hashtag}</Text>

@@ -110,12 +110,6 @@ const styles = StyleSheet.create({
 
 
 
-
-
-        /*         gap:5,
-                justifyContent:"flex-start",
-                flexWrap:"wrap" */
-
     },
     postLinkContainer: {
         height: 110,
