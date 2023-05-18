@@ -22,6 +22,7 @@ const ProfileScreen = () => {
         const getUserData = async () => {
             try {
                 const userId = await AsyncStorage.getItem('userID')
+                console.log(userId)
                 const response = await fetch('https://circle-backend-2-s-guettner.vercel.app/api/v1/get-profile', {
                     method: 'POST',
                     headers: {
@@ -44,6 +45,7 @@ const ProfileScreen = () => {
         getUserData();
     }, [route.params?.userIdParameter])
 
+    console.log(profileData.avatarMidsize);
 
     return (
         <View style={styles.pageContainer}>

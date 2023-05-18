@@ -170,7 +170,7 @@ const Search = () => {
         <>
             <SafeAreaView>
                 <TextInput
-                    placeholder='Search for users...'
+                    placeholder="Search for users..."
                     placeholderTextColor="#808080"
                     style={styles.input}
                     onChangeText={setUserName}
@@ -186,21 +186,16 @@ const Search = () => {
                 />
                 {isLoading && <ActivityIndicator />} */}
 
-
-                <ScrollView>
-                    {searchedUser && searchedUser.map((user) => {
-                        console.log(user.avatarSmall)
-                        return (
-                            <FollowButton
-                                key={user._id}
-                                fullName={user.fullName}
-                                image={user.avatarSmall}
-                            />)
-                    })}
+                <ScrollView style={styles.scrollViewContainer}>
+                    {searchedUser &&
+                        searchedUser.map((user) => {
+                            console.log(user.avatarSmall);
+                            return <FollowButton key={user._id} fullName={user.fullName} image={user.avatarSmall} />;
+                        })}
                 </ScrollView>
             </SafeAreaView>
         </>
-    )
+    );
 }
 
 /*                         <View style={styles.searchedUserContainer} key={user._id}>
@@ -218,6 +213,9 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         paddingBottom: 20,
         paddingInline: 20
+    },
+    scrollViewContainer:{
+        backgroundColor:"white"
     },
     input: {
         top: -10,
