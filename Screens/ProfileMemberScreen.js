@@ -58,9 +58,7 @@ const ProfileMemberScreen = () => {
                     </TouchableOpacity>
                 </View>
 
-                <View>
-                    <FollowButton fullName={user.fullName} image={user.avatarSmall} />;
-                </View>
+
 
                 <View style={styles.userStatsContainer}>
                     <View style={styles.userStats}>
@@ -115,6 +113,7 @@ const styles = StyleSheet.create({
         paddingLeft: 25,
         paddingRight: 25,
         paddingTop: 60,
+        backgroundColor:"white"
     },
     imageProfile: {
         width: 100,

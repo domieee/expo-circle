@@ -77,7 +77,7 @@ const UploadScreen = ({ navigation }) => {
             feedNavigation;
         } catch (error) {
             console.log(error);
-        }
+        } 
     };
 
     const handleImageUpload = async () => {
