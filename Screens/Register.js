@@ -27,8 +27,8 @@ const Register = ({ navigation }) => {
                 await AsyncStorage.setItem('userID', res._id);
                 navigation.navigate('RegisterDetails')
             } else {
-                setErrorMsg(responseData.msg);
-                console.log(responseData)
+                setErrorMsg(response.msg);
+                console.log(response)
             }
         } catch (err) {
             console.log(err, '55');

@@ -55,7 +55,7 @@ const ProfileScreen = () => {
                 <Image style={styles.imageProfile} source={{ uri: profileData?.avatarMidsize }} />
                 <Text style={styles.userName}>{profileData?.fullName}</Text>
                 <Text style={styles.jobTitle}>{profileData?.jobTitle}</Text>
-                <Text style={styles.userDescription}>{profileData?.profileCaption}</Text>
+                <Text style={styles.userDescription}>{profileData?.userDescription}</Text>
                 <TouchableOpacity onPress={handlePress}>
                     <Text style={styles.websiteLink}>{profileData?.website}</Text>
                 </TouchableOpacity>
@@ -205,5 +205,4 @@ const styles = StyleSheet.create({
     statsDescription: {
         fontSize: 15
     }
-
 }); 
