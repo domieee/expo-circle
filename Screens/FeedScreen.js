@@ -57,6 +57,7 @@ const FeedScreen = ({ navigation }) => {
                 userName={item.postCreator}
                 jobTitle={item.postCreatorJob}
                 postCaption={item.postCaption}
+                postDescription={item.postDescription}
                 hashtags={item.hashtags}
                 timestamp={item.timestamp}
                 likes={item.likes}

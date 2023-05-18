@@ -16,7 +16,7 @@ const UploadScreen = () => {
 
     const [profileData, setProfileData] = useState([]);
 
-    const [postCaption, setPostCaption] = useState('');
+    const [postDescription, setPostDescription] = useState('');
 
     useEffect(() => {
         const getUserData = async () => {
@@ -61,7 +61,7 @@ const UploadScreen = () => {
                     jobTitle: jobTitle,
                     postImage: postImage,
                     likes: likes,
-                    postCaption: postCaption,
+                    postDescription: postDescription,
                 }),
             });
             const userData = await response.json();
@@ -114,12 +114,12 @@ const UploadScreen = () => {
     return (
         <View style={styles.container}>
             {/* Display the uploaded image */}
-             <Image style={styles.avatar} source={!postImage ? require('../assets/img/placeholderPost.png') : { uri: image }} />
-           {/*  <Image style={styles.avatar} source={{ uri: profileImage }} /> */}
+            <Image style={styles.avatar} source={!postImage ? require('../assets/img/placeholderPost.png') : { uri: image }} />
+            {/*  <Image style={styles.avatar} source={{ uri: profileImage }} /> */}
 
             {/* Button to trigger image upload */}
             <Button title="Upload Image" onPress={handleImageUpload} />
-            <TextInput styles={styles.input} placeholder="Title" />
+            <TextInput onChangeText={setPostDescription} value={postDescription} styles={styles.input} placeholder="Title" />
             <TouchableOpacity style={styles.button} onPress={createPost}>
                 <Text>NEW POST!!!!!!!!!</Text>
             </TouchableOpacity>
