@@ -33,7 +33,6 @@ const FeedScreen = ({ navigation }) => {
         return unsubscribe;
     }, [navigation]);
 
-
     const fetchFeed = async () => {
         try {
             const userID = await AsyncStorage.getItem('userID');
@@ -62,6 +61,19 @@ const FeedScreen = ({ navigation }) => {
             console.log(error);
         }
     };
+
+    useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', () => {
+            fetchFeed()
+            console.log('Tab is active, rerendering...');
+        });
+
+        return unsubscribe;
+    }, [navigation]);
+
+
+
+
 
     useEffect(() => {
         fetchFeed();

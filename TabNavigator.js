@@ -29,7 +29,7 @@ const TabNavigator = () => {
                 },
             })}
             tabBarOptions={{
-                activeTintColor: 'tomato',
+                activeTintColor: '#E98090',
                 inactiveTintColor: 'gray',
             }}>
             <Tab.Screen name="Home" component={HomeStack}
