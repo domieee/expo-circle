@@ -7,8 +7,8 @@ const FollowButton = ({ fullName, image }) => {
     return (
         <View style={styles.searchedUserContainer}>
             <View style={styles.nameContainer}>
-                <Text style={styles.textName}>{fullName}</Text>
                 <Image style={styles.image} source={{ uri: image }} />
+                <Text style={styles.textName}>{fullName}</Text>
             </View>
             <Pressable onPress={() => setRenderState((prev) => !prev)} style={renderState ? styles.buttonClicked : styles.button}>
                 <Text style={renderState ? styles.textClicked : styles.text}>{renderState ? 'Unfollow' : 'Follow'}</Text>
@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
     },
     nameContainer: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
         width: 210,
         alignItems: 'center',
     },
@@ -47,6 +46,7 @@ const styles = StyleSheet.create({
         width: 50,
         height: 50,
         borderRadius: 100,
+        marginRight:10
     },
     textName: {
         fontSize: 15,
