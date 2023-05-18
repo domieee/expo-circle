@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 const Post = ({ profileImage, postImage, timestamp, userName, jobTitle, hashtags, likes, comments, navigation, postCaption, id }) => {
 
-    console.log(timestamp);
+   /*  console.log(timestamp); */
 
     // like toggle
     const [likeToggle, setLikeToggle] = useState(false);
