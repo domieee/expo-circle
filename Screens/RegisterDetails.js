@@ -1,8 +1,7 @@
-import { View, Text, TextInput, Image, StyleSheet, Button, TouchableOpacity } from 'react-native'
+import { View, Text, TextInput, Image, StyleSheet, Button, TouchableOpacity, Pressable } from 'react-native'
 import React, { useState } from 'react'
 import * as ImagePicker from 'expo-image-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Pressable } from 'react-native-web';
 
 
 const RegisterDetails = ({ isAuthenticated, setIsAuthenticated }) => {
@@ -94,7 +93,7 @@ const RegisterDetails = ({ isAuthenticated, setIsAuthenticated }) => {
         <View style={styles.centered}>
             <Image style={styles.avatar} source={!image ? require('../assets/img/placeholder.png') : { uri: image }} />
 
-         {/*    <Button title="Upload Image" onPress={handleImageUpload} /> */}
+            {/*    <Button title="Upload Image" onPress={handleImageUpload} /> */}
 
             <Pressable style={styles.uploadButton} onPress={handleImageUpload}>
                 <Text style={styles.uploadText}>Upload Image</Text>
@@ -207,7 +206,7 @@ const styles = StyleSheet.create({
         color: 'white',
     },
     uploadText: {
-        color:"white"
+        color: "white"
     },
     uploadButton: {
         marginTop: 10,
@@ -217,7 +216,7 @@ const styles = StyleSheet.create({
         borderRadius: 30,
         paddingTop: 5,
         paddingBottom: 5,
-        marginBottom:15
+        marginBottom: 15
     },
 });
 
